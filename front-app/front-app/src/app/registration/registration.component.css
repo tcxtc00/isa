@@ -1,12 +1,22 @@
-input[type=text],
-select {
+input[type=text],[type = password], textarea
+{
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
+    padding: 9px 15px;
+    margin: 7px 0;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+.labelClass{
+    margin: 7px 0;
+}
+
+.validation{
+    margin: 7px 0;
+    font-size: 12px;
+    color: red;
 }
 
 button {
@@ -28,12 +38,36 @@ button:hover {
     border-radius: 5px;
     background-color: #e6e2dd;
     padding: 20px;
-    width:100%;
-    margin-top: 30px;   
+    width: 100%;
+    margin-top: 20px;
 }
 
 h1 {
+    font-size: 40px;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 20px;
     color: #d3b0aa;
+}
+
+fieldset {
+    overflow: hidden
+}
+
+.some-class {
+    float: left;
+    clear: none;
+}
+
+.label1 {
+    float: left;
+    clear: none;
+    display: block;
+    padding: 0px 1em 0px 8px;
+}
+
+input[type=radio],
+input.radio {
+    float: left;
+    clear: none;
+    margin: 4px 0 0 5px;
 }
