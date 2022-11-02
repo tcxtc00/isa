@@ -1,123 +1,123 @@
 <div class="row">
     <div class="col-sm"></div>
     <div class="col-5">
-        <h1>Registration</h1>
+        <h1>Registracija</h1>
         <div class="rounded">
             <div class="row" style="margin: 7px 0;">
                 <label class="labelClass" for="email">Email</label>
-                <input type="text" id="email" name="email" placeholder="Your email.." [(ngModel)]="email" (input)="checkEmail()">
+                <input type="text" id="email" name="email" placeholder="Email.." [(ngModel)]="email" (input)="checkEmail()">
             </div>
             <div *ngIf="emptyEmail" class="row" style="margin: -15px 0;">
-                <label class="validation">Enter your email address</label>
+                <label class="validation">Unesite vaš email</label>
             </div>
 
             <div class="row" style="margin: 7px 0;">
-                <label class="labelClass" for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Your name.." [(ngModel)]="name" (input)="checkName()">
+                <label class="labelClass" for="name">Ime</label>
+                <input type="text" id="name" name="name" placeholder="Ime.." [(ngModel)]="name" (input)="checkName()">
             </div>
             <div *ngIf="emptyName" class="row" style="margin: -15px 0;">
-                <label class="validation">Enter your name</label>
+                <label class="validation">Unesite vaše ime</label>
             </div>
 
             <div class="row" style="margin: 7px 0;">
-                <label class="labelClass" for="surname">Surname</label>
-                <input type="text" id="surname" name="surname" placeholder="Your surname.." [(ngModel)]="surname" (input)="checkSurname()">
+                <label class="labelClass" for="surname">Prezime</label>
+                <input type="text" id="surname" name="surname" placeholder="Prezime.." [(ngModel)]="surname" (input)="checkSurname()">
             </div>
             <div *ngIf="emptySurname" class="row" style="margin: -15px 0;">
-                <label class="validation">Enter your surname</label>
+                <label class="validation">Unesite vaše prezime</label>
             </div>
 
 
             <div class="row" style="margin: 7px 0;">
-                <label class="labelClass" for="address"> Residential Address</label>
-                <input type="text" id="address" name="address" placeholder="Your address.." [(ngModel)]="address" (input)="checkAddress()">
+                <label class="labelClass" for="address">Adresa stanovanja</label>
+                <input type="text" id="address" name="address" placeholder="Adresa stanovanja.." [(ngModel)]="address" (input)="checkAddress()">
             </div>
             <div *ngIf="emptyAddress" class="row" style="margin: -15px 0;">
-                <label class="validation">Enter your residential address</label>
+                <label class="validation">Unesite vašu adresu stanovanja</label>
             </div>
 
             <div class="row" style="margin: 7px 0;">
-                <label class="labelClass" for="city">City</label>
-                <input type="text" id="city" name="city" placeholder="City.." [(ngModel)]="city" (input)="checkCity()">
+                <label class="labelClass" for="city">Grad</label>
+                <input type="text" id="city" name="city" placeholder="Grad.." [(ngModel)]="city" (input)="checkCity()">
             </div>
             <div *ngIf="emptyCity" class="row" style="margin: -15px 0;">
-                <label class="validation">Enter city</label>
+                <label class="validation">Unesite grad</label>
             </div>
 
             <div class="row" style="margin: 7px 0;">
-                <label class="labelClass" for="country">Country</label>
-                <input type="text" id="country" name="country" placeholder="Country.." [(ngModel)]="country" (input)="checkCountry()">
+                <label class="labelClass" for="country">Država</label>
+                <input type="text" id="country" name="country" placeholder="Država.." [(ngModel)]="country" (input)="checkCountry()">
             </div>
             <div *ngIf="emptyCountry" class="row" style="margin: -15px 0;">
-                <label class="validation">Enter country</label>
+                <label class="validation">Unesite državu</label>
             </div>
 
             <div class="row" style="margin: 7px 0;">
-                <label class="labelClass" for="phoneNumber">Phone Number</label>
-                <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Your phone number.." [(ngModel)]="phoneNumber" (input)="checkPhone()">
+                <label class="labelClass" for="phoneNumber">Broj telefona</label>
+                <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Broj telefona.." [(ngModel)]="phoneNumber" (input)="checkPhone()">
             </div>
             <div *ngIf="emptyPhone" class="row" style="margin: -15px 0;">
-                <label class="validation">Enter your phone number</label>
+                <label class="validation">Unesite vaš broj telefona</label>
             </div>
 
             <div class="row" style="margin: 7px 0;">
                 <label class="labelClass" for="jmbg">JMBG</label>
-                <input type="text" id="jmbg" name="jmbg" placeholder="Your jmbg.." [(ngModel)]="jmbg" (input)="checkJmbg()">
+                <input type="text" id="jmbg" name="jmbg" placeholder="Jmbg.." [(ngModel)]="jmbg" (input)="checkJmbg()">
             </div>
             <div *ngIf="emptyJmbg" class="row" style="margin: -15px 0;">
-                <label class="validation">Enter your JMBG</label>
+                <label class="validation">Unesite vaš JMBG</label>
             </div>
 
             <div class="row" style="margin: 7px 0;">
                 <fieldset>
                     <div class="some-class">
                         <input type="radio" class="radio" name="x" value="Male" id="y" [(ngModel)]="gender" (change)="checkGender()" />
-                        <label class="label1" for="y">Male</label>
+                        <label class="label1" for="y">Muški pol</label>
                         <input type="radio" class="radio" name="x" value="Female" id="z" [(ngModel)]="gender" (change)="checkGender()"/>
-                        <label class="label1" for="z">Female</label>
+                        <label class="label1" for="z">Ženski pol</label>
                     </div>
                 </fieldset>
             </div>
             <div *ngIf="emptyGender" class="row" style="margin: -15px 0;">
-                <label class="validation">Choose gender</label>
+                <label class="validation">Izaberite pol</label>
             </div>
 
             <div class="row" style="margin: 7px 0;">
-                <label class="labelClass" for="profession">Profession</label>
-                <input type="text" id="profession" name="profession" placeholder="Your profession.." [(ngModel)]="profession" (input)="checkProfession()">
+                <label class="labelClass" for="profession">Zanimanje</label>
+                <input type="text" id="profession" name="profession" placeholder="Zanimanje.." [(ngModel)]="profession" (input)="checkProfession()">
             </div>
             <div *ngIf="emptyProfession" class="row" style="margin: -15px 0;">
-                <label class="validation">Enter your profession</label>
+                <label class="validation">Unesite vaše zanimanje</label>
             </div>
 
             <div class="row" style="margin: 7px 0;">
-                <label class="labelClass" for="info">Information about the company/faculty/school</label>
+                <label class="labelClass" for="info">Informacije o firmi/fakultetu/školi</label>
                 <textarea rows="3" [(ngModel)]="info" (input)="checkInfo()"></textarea>
             </div>
             <div *ngIf="emptyInfo" class="row" style="margin: -15px 0;">
-                <label class="validation">Enter information about company, faculty or school</label>
+                <label class="validation">Unesite informacije o firmi/fakultetu/školi</label>
             </div>
 
             <div class="row" style="margin: 7px 0;">
-                <label class="labelClass" for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Your password.." [(ngModel)]="password" (input)="checkPassword()">
+                <label class="labelClass" for="password">Lozinka</label>
+                <input type="password" id="password" name="password" placeholder="Lozinka.." [(ngModel)]="password" (input)="checkPassword()">
             </div>
             <div *ngIf="emptyPassword" class="row" style="margin: -15px 0;">
-                <label class="validation">Enter password</label>
+                <label class="validation">Unesite lozinku</label>
             </div>
 
             <div class="row" style="margin: 7px 0;">
-                <label class="labelClass" for="confirmPassword">Confirm Password</label>
+                <label class="labelClass" for="confirmPassword">Potvrdite lozinku</label>
                 <input type="password" id="confirmPassword" name="confirmPassword"
-                    placeholder="Your confirm password.." [(ngModel)]="confirmPassword" (input)="checkConfirmPassword()">
+                    placeholder="Potvrdite lozinku.." [(ngModel)]="confirmPassword" (input)="checkConfirmPassword()">
             </div>
             <div *ngIf="emptyConfirmPassword" class="row" style="margin: -15px 0;">
-                <label class="validation">Enter confirm password</label>
+                <label class="validation">Uneste potvrdu lozinke</label>
             </div>
 
             <div class="row">
                 <div class="col"></div>
-                <div class="col"><button (click)="register()">Register</button></div>
+                <div class="col"><button (click)="register()">Registruj se</button></div>
                 <div class="col"></div>
             </div>
         </div>
