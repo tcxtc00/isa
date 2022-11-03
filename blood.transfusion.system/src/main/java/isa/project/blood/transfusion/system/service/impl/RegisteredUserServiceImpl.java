@@ -18,6 +18,7 @@ import isa.project.blood.transfusion.system.model.RegisteredUser;
 import isa.project.blood.transfusion.system.model.User;
 import isa.project.blood.transfusion.system.repository.UserRepository;
 import isa.project.blood.transfusion.system.security.JwtAuthenticationRequest;
+import isa.project.blood.transfusion.system.security.SecurityUtils;
 import isa.project.blood.transfusion.system.security.TokenUtils;
 import isa.project.blood.transfusion.system.service.AuthorityService;
 import isa.project.blood.transfusion.system.service.RegisteredUserService;
@@ -131,5 +132,12 @@ public class RegisteredUserServiceImpl implements RegisteredUserService{
 
 		// Vrati token kao odgovor na uspesnu autentifikaciju
 		return new UserTokenState(jwt, expiresIn);
+	}
+
+
+	@Override
+	public User current() {
+		String username = SecurityUtils.getCurrentUserLogin().get();
+        return userRepository.findByUsername(username);
 	}
 }

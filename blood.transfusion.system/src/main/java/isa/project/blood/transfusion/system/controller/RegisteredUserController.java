@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +34,16 @@ public class RegisteredUserController {
 		}
 		
 		return new ResponseEntity<>(user, HttpStatus.CREATED);
+	}
+	
+	@GetMapping(path = "/current")
+	@PreAuthorize("hasRole('REGISTEREDUSER')")
+	public ResponseEntity<?> current(){
+		User user = registeredUserService.current();
+		if(user == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 	
 	@PostMapping("/login")

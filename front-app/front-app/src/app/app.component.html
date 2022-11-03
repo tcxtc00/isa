@@ -1,9 +1,9 @@
 <div class="topnav">
-  <a href="/">Homepage</a>
-  <a href="/registration">Registration</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
-  <a href="/login" style="float: right;">Log in</a>
+  <a href="/">Početna</a>
+  <a href="/registration" *ngIf="user == null">Registracija</a>
+  <a href="#about" *ngIf="role == 'ROLE_REGISTEREDUSER'">About</a>
+  <a href="/login" style="float: right;" *ngIf="user == null">Uloguj se</a>
+  <a style="float: right;" *ngIf="user != null" (click) = "logout()" >Odjava</a>
 </div>
 
 <router-outlet></router-outlet>

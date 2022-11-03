@@ -9,4 +9,5 @@ public interface RegisteredUserService {
 
 	public User register(UserDTO userDTO);
 	public UserTokenState login(JwtAuthenticationRequest authenticationRequest);
+	public User current();
 }

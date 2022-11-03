@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +14,9 @@ export class LoginComponent implements OnInit {
   password = ''
   emptyEmail = false
   emptyPassword = false
+  user: any
 
-  constructor() { }
+  constructor(private matSnackBar: MatSnackBar, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -42,9 +46,25 @@ export class LoginComponent implements OnInit {
     }else if(this.password == ''){
       this.emptyPassword = true;
     }else{
-      console.log(this.email)
+      let data = {
+        username: this.email,
+        password: this.password
+      }
+      this.userService.login(data).subscribe((response: any) => {
+        localStorage.setItem('token', response.accessToken);
+        localStorage.setItem('expiresIn', response.expiresIn);
+        this.userService.current().subscribe((response: any) => {
+          this.user = response;
+          localStorage.setItem('user', JSON.stringify(this.user));
+          console.log(this.user);
+          location.replace('/')
+          
+        })
+        
+      }, error => {
+        this.matSnackBar.open('Email i lozinka nisu ispravni!', 'Close', {duration: 3500})
+      })
     }
-    
     
   }
 
