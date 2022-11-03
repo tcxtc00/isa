@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -37,7 +39,7 @@ export class RegistrationComponent implements OnInit {
   emptyConfirmPassword = false
   passwordsNotMatches = false;
 
-  constructor(private userService: UserService) { }
+  constructor(private matSnackBar: MatSnackBar, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -90,7 +92,12 @@ export class RegistrationComponent implements OnInit {
       }
       this.userService.register(data).subscribe((response: any) => {
         console.log(response);
-      })
+        this.matSnackBar.open('Uspešno ste se registrovali!', 'Close', {duration: 3500})
+        this.router.navigate(['/'])
+      }, error => {
+        this.matSnackBar.open('Registracija nije uspela!', 'Close', {duration: 3500})
+      }
+      )
 
     }
     
@@ -98,7 +105,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   checkName(){
-    console.log(this.name)
     if(this.name == ''){
       this.emptyName = true;
     }else{
@@ -107,7 +113,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   checkEmail(){
-    console.log(this.email)
     if(this.email == ''){
       this.emptyEmail = true;
     }else{
@@ -116,7 +121,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   checkSurname(){
-    console.log(this.surname)
     if(this.surname == ''){
       this.emptySurname = true;
     }else{
@@ -125,7 +129,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   checkGender(){
-    console.log(this.gender)
     if(this.gender == ''){
       this.emptyGender = true;
     }else{
@@ -134,7 +137,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   checkAddress(){
-    console.log(this.address)
     if(this.address == ''){
       this.emptyAddress = true;
     }else{
@@ -143,7 +145,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   checkCity(){
-    console.log(this.city)
     if(this.city == ''){
       this.emptyCity = true;
     }else{
@@ -152,7 +153,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   checkCountry(){
-    console.log(this.country)
     if(this.country == ''){
       this.emptyCountry = true;
     }else{
@@ -161,7 +161,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   checkPhone(){
-    console.log(this.phoneNumber)
     if(this.phoneNumber == ''){
       this.emptyPhone = true;
     }else{
@@ -171,7 +170,6 @@ export class RegistrationComponent implements OnInit {
 
 
   checkProfession(){
-    console.log(this.profession)
     if(this.profession == ''){
       this.emptyProfession = true;
     }else{
@@ -180,7 +178,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   checkInfo(){
-    console.log(this.info)
     if(this.info == ''){
       this.emptyInfo = true;
     }else{
@@ -189,7 +186,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   checkPassword(){
-    console.log(this.password)
     if(this.password == ''){
       this.emptyPassword = true;
       if(this.password != this.confirmPassword){
@@ -208,7 +204,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   checkConfirmPassword(){
-    console.log(this.confirmPassword)
     if(this.confirmPassword == ''){
       this.emptyConfirmPassword = true;
       if(this.confirmPassword != this.password){
@@ -227,16 +222,11 @@ export class RegistrationComponent implements OnInit {
   }
 
   checkJmbg(){
-    console.log(this.jmbg)
     if(this.jmbg == ''){
       this.emptyJmbg = true;
     }else{
       this.emptyJmbg = false;
     }
   }
-
-  
-
-  
 
 }
