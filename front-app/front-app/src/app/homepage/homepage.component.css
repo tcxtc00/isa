@@ -1,0 +1,52 @@
+.img1 {
+    border-radius: 8px;
+    width: 84%;
+    margin-left: 10px;
+    margin-top: 40px;
+    
+}
+
+.img2 {
+    border-radius: 8px;
+    width: 88%;
+    height: 80%;
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+.img3 {
+    border-radius: 8px;
+    width: 95%;
+    height: 90%;
+    margin-top: 20px;
+    margin-left: -35px;
+}
+
+.rounded {
+    border-radius: 5px;
+    background-color: #e6e2dd;
+    padding: 20px;
+    width: 82%;
+    margin-top: 20px;
+    margin-left: 115px;
+}
+
+.rounded1 {
+    border-radius: 5px;
+    background-color: #e6e2dd;
+    padding: 20px;
+    width: 95%;
+    margin-top: 20px;
+    margin-left: -10px;
+}
+
+
+.rounded2 {
+    border-radius: 5px;
+    background-color: #e6e2dd;
+    padding: 20px;
+    width: 92%;
+    margin-top: 20px;
+    margin-left: 60px;
+}
+
