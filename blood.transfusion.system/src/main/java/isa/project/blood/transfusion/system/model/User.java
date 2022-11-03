@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "users_table")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class User implements UserDetails {
 
 	/**
@@ -76,7 +76,7 @@ public abstract class User implements UserDetails {
 	@Column(name = "proffesion_info")
 	private String professionInfo;
 	
-	@Column(name = "status", nullable = false)
+	@Column(name = "status")
 	private UserStatus status;
 
 	@ManyToMany(fetch = FetchType.EAGER)
