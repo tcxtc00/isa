@@ -13,6 +13,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ActivationAccountComponent } from './activation-account/activation-account.component';
+import { BloodTransfusionCenterComponent } from './blood-transfusion-center/blood-transfusion-center.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,8 @@ import { ActivationAccountComponent } from './activation-account/activation-acco
     RegistrationComponent,
     HomepageComponent,
     LoginComponent,
-    ActivationAccountComponent
+    ActivationAccountComponent,
+    BloodTransfusionCenterComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +34,10 @@ import { ActivationAccountComponent } from './activation-account/activation-acco
     FormsModule,
     HttpClientModule,
     NoopAnimationsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,12 @@
+.rounded {
+    border-radius: 5px;
+    background-color: #e6e2dd;
+    padding: 20px;
+    width: 90%;
+    margin: 20px;
+    height: 300px;
+}
+
+.mat-radio-button~.mat-radio-button {
+    margin-left: 16px;
+}

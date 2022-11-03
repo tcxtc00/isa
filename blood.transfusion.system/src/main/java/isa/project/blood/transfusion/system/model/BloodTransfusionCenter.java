@@ -29,6 +29,9 @@ public class BloodTransfusionCenter {
 	@Column(name = "address", nullable = false)
 	private String address;
 	
+	@Column(name = "city", nullable = false)
+	private String city;
+	
 	@Column(name = "description", nullable = false)
 	private String description;
 	
@@ -87,6 +90,16 @@ public class BloodTransfusionCenter {
 
 	public void setRate(Double rate) {
 		this.rate = rate;
+	}
+	
+	
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public Set<AvailableAppointment> getAppointments() {
