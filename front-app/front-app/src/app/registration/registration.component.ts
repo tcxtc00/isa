@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-registration',
@@ -34,8 +35,9 @@ export class RegistrationComponent implements OnInit {
   emptyPhone = false
   emptyPassword = false
   emptyConfirmPassword = false
+  passwordsNotMatches = false;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -68,8 +70,28 @@ export class RegistrationComponent implements OnInit {
       this.emptyPassword = true;
     }else if(this.confirmPassword == ''){
       this.emptyConfirmPassword = true;
+    }else if(!(this.password == this.confirmPassword)){
+      this.passwordsNotMatches = true;
     }else{
-      console.log(this.name)
+
+      let data = {
+        username: this.email,
+        name: this.name,
+        surname: this.surname,
+        password: this.password,
+        address: this.address,
+        city: this.city,
+        country: this.country,
+        phoneNumber: this.phoneNumber,
+        jmbg: this.jmbg,
+        gender: this.gender,
+        profession: this.profession,
+        professionInfo: this.info
+      }
+      this.userService.register(data).subscribe((response: any) => {
+        console.log(response);
+      })
+
     }
     
     
@@ -170,8 +192,18 @@ export class RegistrationComponent implements OnInit {
     console.log(this.password)
     if(this.password == ''){
       this.emptyPassword = true;
+      if(this.password != this.confirmPassword){
+        this.passwordsNotMatches = true;
+      }else{
+        this.passwordsNotMatches = false;
+      }
     }else{
       this.emptyPassword = false;
+      if(this.password != this.confirmPassword){
+        this.passwordsNotMatches = true;
+      }else{
+        this.passwordsNotMatches = false;
+      }
     }
   }
 
@@ -179,8 +211,18 @@ export class RegistrationComponent implements OnInit {
     console.log(this.confirmPassword)
     if(this.confirmPassword == ''){
       this.emptyConfirmPassword = true;
+      if(this.confirmPassword != this.password){
+        this.passwordsNotMatches = true;
+      }else{
+        this.passwordsNotMatches = false;
+      }
     }else{
       this.emptyConfirmPassword = false;
+      if(this.confirmPassword != this.password){
+        this.passwordsNotMatches = true;
+      }else{
+        this.passwordsNotMatches = false;
+      }
     }
   }
 

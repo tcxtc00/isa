@@ -49,35 +49,33 @@ public class RegisteredUserServiceImpl implements RegisteredUserService{
 		if(!userDTO.getPhoneNumber().matches("[0-9]{7,15}")) {
 			return null;
 		}
-		if(!userDTO.getAddress().matches("[a-zA-Z]+")) {
+		if(!userDTO.getAddress().matches("[a-žA-Ž\s[0-9]*]+")) {
 			return null;
 		}
-		if(!userDTO.getName().matches("[a-zA-Z]+")) {
+		if(!userDTO.getName().matches("[a-žA-Ž\s]+")) {
 			return null;
 		}
-		if(!userDTO.getSurname().matches("[a-zA-Z]+")) {
+		if(!userDTO.getSurname().matches("[a-žA-Ž\s]+")) {
 			return null;
 		}
-		if(!userDTO.getProfession().matches("[a-zA-Z]+")) {
+		if(!userDTO.getProfession().matches("[a-žA-Ž\s]+")) {
 			return null;
 		}
-		if(!userDTO.getProfessionInfo().matches("[a-zA-Z\s]+")) {
+		if(!userDTO.getProfessionInfo().matches("[a-zA-Z\s[0-9]*]+")) {
 			return null;
 		}
-		if(!userDTO.getCity().matches("[a-zA-Z\s]+")) {
+		if(!userDTO.getCity().matches("[a-žA-Ž\s]+")) {
 			return null;
 		}
-		if(!userDTO.getCountry().matches("[a-zA-Z\s]+")) {
+		if(!userDTO.getCountry().matches("[a-žA-Ž\s]+")) {
 			return null;
 		}
-		if(!userDTO.getGender().equals("Male")) {
-			
+		if(!userDTO.getGender().equals("Male")) {	
 			if(!userDTO.getGender().equals("Female")) {
 				return null;
-			}
-		
+			}	
 		}
-		if(!userDTO.getUsername().matches("[A-Za-z\\+]+@gmail\\.com")) {
+		if(!userDTO.getUsername().matches("[A-Za-z1-9\\.\\+]+@gmail\\.com")) {
 			return null;
 		}
 		if(userDTO.getPassword().matches("^$")) {

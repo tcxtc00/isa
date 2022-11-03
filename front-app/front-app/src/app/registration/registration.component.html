@@ -114,6 +114,9 @@
             <div *ngIf="emptyConfirmPassword" class="row" style="margin: -15px 0;">
                 <label class="validation">Uneste potvrdu lozinke</label>
             </div>
+            <div *ngIf="passwordsNotMatches" class="row" style="margin: -15px 0;">
+                <label class="validation">Lozinke se ne poklapaju</label>
+            </div>
 
             <div class="row">
                 <div class="col"></div>

@@ -33,6 +33,8 @@ public abstract class User implements UserDetails {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private static final String USER_TYPE = "";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -226,5 +228,9 @@ public abstract class User implements UserDetails {
 		// TODO Auto-generated method stub
 		return true;
 	}
+	
+	public String getUserType() {
+        return USER_TYPE;
+    }
 
 }

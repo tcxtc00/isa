@@ -31,7 +31,7 @@ public class RegisteredUserController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
-		return new ResponseEntity<>(HttpStatus.CREATED);
+		return new ResponseEntity<>(user, HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/login")
