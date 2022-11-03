@@ -2,6 +2,8 @@ package isa.project.blood.transfusion.system.service.impl;
 
 import java.util.ArrayList;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,11 +18,13 @@ import isa.project.blood.transfusion.system.model.Authority;
 import isa.project.blood.transfusion.system.model.Gender;
 import isa.project.blood.transfusion.system.model.RegisteredUser;
 import isa.project.blood.transfusion.system.model.User;
+import isa.project.blood.transfusion.system.model.UserStatus;
 import isa.project.blood.transfusion.system.repository.UserRepository;
 import isa.project.blood.transfusion.system.security.JwtAuthenticationRequest;
 import isa.project.blood.transfusion.system.security.SecurityUtils;
 import isa.project.blood.transfusion.system.security.TokenUtils;
 import isa.project.blood.transfusion.system.service.AuthorityService;
+import isa.project.blood.transfusion.system.service.EmailService;
 import isa.project.blood.transfusion.system.service.RegisteredUserService;
 
 @Service
@@ -40,6 +44,9 @@ public class RegisteredUserServiceImpl implements RegisteredUserService{
 	
 	@Autowired
 	private TokenUtils tokenUtils;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	
 	public User register(UserDTO userDTO) {
@@ -76,7 +83,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService{
 				return null;
 			}	
 		}
-		if(!userDTO.getUsername().matches("[A-Za-z1-9\\.\\+]+@gmail\\.com")) {
+		if(!userDTO.getUsername().matches("[A-Za-z0-9\\.\\+]+@gmail\\.com")) {
 			return null;
 		}
 		if(userDTO.getPassword().matches("^$")) {
@@ -104,11 +111,18 @@ public class RegisteredUserServiceImpl implements RegisteredUserService{
         registeredUser.setProfession(userDTO.getProfession());
         registeredUser.setProfessionInfo(userDTO.getProfessionInfo());
         registeredUser.setJmbg(userDTO.getJmbg());
+        registeredUser.setStatus(UserStatus.Pending);
         if(userDTO.getGender().equals("Male")) {
         	registeredUser.setGender(Gender.Male);
         }else if (userDTO.getGender().equals("Female")) {
         	registeredUser.setGender(Gender.Femaile);
-        }
+        }     
+        try {
+			emailService.registrationEmail(registeredUser);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
       
         return userRepository.save(registeredUser);
 		
@@ -127,6 +141,10 @@ public class RegisteredUserServiceImpl implements RegisteredUserService{
 		// Kreiraj token za tog korisnika
 		User user = (User) authentication.getPrincipal();
 		
+		if(!user.getStatus().equals(UserStatus.Accepted)) {
+			return null;
+		}
+		
 		String jwt = tokenUtils.generateToken(user.getUsername(), userRepository.findTypeById(user.getId()));
 		int expiresIn = tokenUtils.getExpiredIn();
 
@@ -139,5 +157,13 @@ public class RegisteredUserServiceImpl implements RegisteredUserService{
 	public User current() {
 		String username = SecurityUtils.getCurrentUserLogin().get();
         return userRepository.findByUsername(username);
+	}
+
+
+	@Override
+	public User changeStatusToAccepted(String username) {
+		User user = userRepository.findByUsername(username);
+		user.setStatus(UserStatus.Accepted);
+		return userRepository.save(user);
 	}
 }

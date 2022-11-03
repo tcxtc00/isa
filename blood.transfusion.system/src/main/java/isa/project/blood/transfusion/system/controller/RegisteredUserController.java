@@ -7,10 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
 import isa.project.blood.transfusion.system.dto.UserDTO;
 import isa.project.blood.transfusion.system.dto.UserTokenState;
@@ -51,8 +53,18 @@ public class RegisteredUserController {
 			HttpServletResponse response) {
 
 		UserTokenState token = registeredUserService.login(authenticationRequest);
+		if(token == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 		return ResponseEntity.ok(token);
 	}
+	
+	@GetMapping(path = "/activate/{username}")
+	public RedirectView activateAcount(@PathVariable String username){
+		registeredUserService.changeStatusToAccepted(username);
+		return new RedirectView("http://localhost:4200/accountActivation");
+	}
+
 	
 	/*@PreAuthorize("hasRole('REGISTEREDUSER')")
 	@GetMapping(path = "/all")

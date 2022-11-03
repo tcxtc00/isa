@@ -75,6 +75,9 @@ public abstract class User implements UserDetails {
 
 	@Column(name = "proffesion_info")
 	private String professionInfo;
+	
+	@Column(name = "status", nullable = false)
+	private UserStatus status;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_authority", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
@@ -187,6 +190,14 @@ public abstract class User implements UserDetails {
 
 	public void setProfessionInfo(String professionInfo) {
 		this.professionInfo = professionInfo;
+	}
+
+	public UserStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(UserStatus status) {
+		this.status = status;
 	}
 
 	public List<Authority> getAuthorities() {

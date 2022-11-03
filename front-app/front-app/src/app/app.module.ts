@@ -12,13 +12,15 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ActivationAccountComponent } from './activation-account/activation-account.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
     HomepageComponent,
-    LoginComponent
+    LoginComponent,
+    ActivationAccountComponent
   ],
   imports: [
     BrowserModule,
