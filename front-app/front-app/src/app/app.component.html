@@ -2,7 +2,7 @@
   <a href="/">Početna</a>
   <a href="/centers">Centri</a>
   <a href="/registration" *ngIf="user == null">Registracija</a>
-  <a href="#about" *ngIf="role == 'ROLE_REGISTEREDUSER'">About</a>
+  <a href="/questionnaire" *ngIf="role == 'ROLE_REGISTEREDUSER'">Upitnik</a>
   <a href="/login" style="float: right;" *ngIf="user == null">Uloguj se</a>
   <a style="float: right;" *ngIf="user != null" (click) = "logout()" >Odjava</a>
 </div>

@@ -3,6 +3,7 @@ package isa.project.blood.transfusion.system.model;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -17,11 +18,13 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "users_table")
@@ -85,6 +88,11 @@ public abstract class User implements UserDetails {
 
 	@Column(name = "last_password_reset_date")
 	private Timestamp lastPasswordResetDate;
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	private Set<Questionnaire> questionnaires;
+	
 
 	public Long getId() {
 		return id;
@@ -214,6 +222,15 @@ public abstract class User implements UserDetails {
 
 	public void setLastPasswordResetDate(Timestamp lastPasswordResetDate) {
 		this.lastPasswordResetDate = lastPasswordResetDate;
+	}
+	
+
+	public Set<Questionnaire> getQuestionnaires() {
+		return questionnaires;
+	}
+
+	public void setQuestionnaires(Set<Questionnaire> questionnaires) {
+		this.questionnaires = questionnaires;
 	}
 
 	@JsonIgnore

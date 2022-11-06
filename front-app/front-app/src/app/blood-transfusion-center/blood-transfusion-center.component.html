@@ -1,6 +1,6 @@
 <div>
     <div *ngIf="role == 'ROLE_REGISTEREDUSER'" class="row">
-        
+
         <div class="col-6" style="margin-top: 10px; margin-left: 10px;">
             <mat-form-field appearance="fill">
                 <mat-label>Sortiraj po</mat-label>
@@ -10,13 +10,14 @@
                     <mat-option value="Rate">Ocena</mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-radio-group (change)="sortTypeChanged()" [(ngModel)]="sortType" style="margin-left: 20px;" aria-label="Select an option">
+            <mat-radio-group (change)="sortTypeChanged()" [(ngModel)]="sortType" style="margin-left: 20px;"
+                aria-label="Select an option">
                 <mat-radio-button value="Descending">Opadajuće</mat-radio-button>
                 <mat-radio-button value="Ascending">Rastuće</mat-radio-button>
-              </mat-radio-group>
+            </mat-radio-group>
         </div>
-        
-        
+
+
     </div>
     <div class="row">
         <div *ngFor="let center of centers" class="col-4">

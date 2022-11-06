@@ -4,14 +4,17 @@ import { ActivationAccountComponent } from './activation-account/activation-acco
 import { BloodTransfusionCenterComponent } from './blood-transfusion-center/blood-transfusion-center.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
+import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AthguardGuard } from './shared/athguard.guard';
 
 const routes: Routes = [
   {path: 'registration', component: RegistrationComponent},
   {path: '', component: HomepageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'accountActivation', component: ActivationAccountComponent},
-  {path: 'centers', component: BloodTransfusionCenterComponent}
+  {path: 'centers', component: BloodTransfusionCenterComponent},
+  {path: 'questionnaire', component: QuestionnaireComponent , canActivate: [AthguardGuard], data:{role: 'ROLE_REGISTEREDUSER'}}
 ];
 
 @NgModule({

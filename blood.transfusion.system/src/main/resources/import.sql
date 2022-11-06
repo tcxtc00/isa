@@ -23,6 +23,10 @@ INSERT INTO public.users_table(type, address, city, country, gender, jmbg, name,
 INSERT INTO public.users_table(type, address, city, country, gender, jmbg, name, password, phone_number, profession, proffesion_info, surname, username) VALUES ('Staff', 'Svetosavska 2', 'Kragujevac', 'Srbija', 1, '1009998888654', 'Aleksandar', '123', '36436437475', 'Medicinska sestra 2 Subotica', 'Institut za transfuziju krvi Kragujevac', 'Simic', 'isa.tanja.2022+aleksandarM@gmail.com');
 
 
+INSERT INTO public.users_table(type, address, city, country, gender, jmbg, name, password, phone_number, profession, proffesion_info, status, surname, username) VALUES ('RegisteredUser', 'Nikole Pasica 55', 'Kraljevo', 'Srbija', 0, '1005995123456', 'Nikola', '$2a$10$C3VgzDUt/I3ghr4yLtF34OnUqAnHZ.OVumf3MWf8Rc7/XmI5ZSmuO', '6467637474', 'Advokat', 'Advokatska komora Srbije', 1, 'Nikovic', 'isa.tanja.2022+nikolaK@gmail.com');
+INSERT INTO public.users_table(type, address, city, country, gender, jmbg, name, password, phone_number, profession, proffesion_info, status, surname, username) VALUES ('RegisteredUser', 'Marka Miljanova 11', 'Novi Sad', 'Srbija', 0, '1105994123456', 'Marina', '$2a$10$C3VgzDUt/I3ghr4yLtF34OnUqAnHZ.OVumf3MWf8Rc7/XmI5ZSmuO', '5235235623', 'Profesor matematike', 'Gimnazija Isidora Sekulic, Novi Sad', 1, 'Urosevic', 'isa.tanja.2022+marinaK@gmail.com');
+
+
 INSERT INTO public.user_authority(user_id, authority_id) VALUES (1, 2);
 INSERT INTO public.user_authority(user_id, authority_id) VALUES (2, 2);
 INSERT INTO public.user_authority(user_id, authority_id) VALUES (3, 2);
@@ -40,6 +44,8 @@ INSERT INTO public.user_authority(user_id, authority_id) VALUES (14, 2);
 INSERT INTO public.user_authority(user_id, authority_id) VALUES (15, 2);
 INSERT INTO public.user_authority(user_id, authority_id) VALUES (16, 2);
 
+INSERT INTO public.user_authority(user_id, authority_id) VALUES (17, 1);
+INSERT INTO public.user_authority(user_id, authority_id) VALUES (18, 1);
 
 
 INSERT INTO public.blood_transfusion_center(address, city, description, name, rate) VALUES ('Futoska 2', 'Novi Sad', 'Misija instituta za transfuziju krvi je da realizuje aktivnosti na omasovljenju davalaštva krvi. Promoviše dobrovoljno, anonimno i nenagrađeno davalaštvo krvi.', 'Institut za transfuziju krvi Vojvodina', 5);

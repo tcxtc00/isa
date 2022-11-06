@@ -17,6 +17,7 @@ import { BloodTransfusionCenterComponent } from './blood-transfusion-center/bloo
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatIconModule} from '@angular/material/icon';
+import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {MatIconModule} from '@angular/material/icon';
     HomepageComponent,
     LoginComponent,
     ActivationAccountComponent,
-    BloodTransfusionCenterComponent
+    BloodTransfusionCenterComponent,
+    QuestionnaireComponent
   ],
   imports: [
     BrowserModule,
