@@ -1,5 +1,6 @@
 <div class="topnav">
   <a href="/">Početna</a>
+  <a href="/profile" *ngIf="role == 'ROLE_REGISTEREDUSER'">Profil</a>
   <a href="/centers">Centri</a>
   <a href="/registration" *ngIf="user == null">Registracija</a>
   <a href="/questionnaire" *ngIf="role == 'ROLE_REGISTEREDUSER'">Upitnik</a>

@@ -18,6 +18,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatIconModule} from '@angular/material/icon';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
     LoginComponent,
     ActivationAccountComponent,
     BloodTransfusionCenterComponent,
-    QuestionnaireComponent
+    QuestionnaireComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AthguardGuard } from './shared/athguard.guard';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   {path: 'registration', component: RegistrationComponent},
@@ -14,7 +15,9 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'accountActivation', component: ActivationAccountComponent},
   {path: 'centers', component: BloodTransfusionCenterComponent},
-  {path: 'questionnaire', component: QuestionnaireComponent , canActivate: [AthguardGuard], data:{role: 'ROLE_REGISTEREDUSER'}}
+  {path: 'questionnaire', component: QuestionnaireComponent , canActivate: [AthguardGuard], data:{role: 'ROLE_REGISTEREDUSER'}},
+  {path: 'profile', component: UserProfileComponent , canActivate: [AthguardGuard], data:{role: 'ROLE_REGISTEREDUSER'}},
+
 ];
 
 @NgModule({
