@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BloodTransfusionCenterService } from '../services/blood-transfusion-center.service';
+import { QuickAppointmentsService } from '../services/quick-appointments.service';
 
 @Component({
   selector: 'app-center-info',
@@ -15,13 +16,15 @@ export class CenterInfoComponent implements OnInit {
   quickAppointments: any[]
   convertedQuickAppointments: any[]
   convertedAppointments: any[]
-  constructor(private activatedRoute: ActivatedRoute, private bloodTRansfusionCenterService: BloodTransfusionCenterService) { }
+  sortBy = ''
+  sortType = ''
+  constructor(private activatedRoute: ActivatedRoute, private bloodTransfusionCenterService: BloodTransfusionCenterService, private quickAppointmentsService: QuickAppointmentsService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id']
       console.log(this.id)
-      this.bloodTRansfusionCenterService.getById(this.id).subscribe((response: any) => {
+      this.bloodTransfusionCenterService.getById(this.id).subscribe((response: any) => {
         this.center = response;
         this.appointments = this.center.appointments
         this.quickAppointments = this.center.quickAppointments
@@ -68,6 +71,35 @@ export class CenterInfoComponent implements OnInit {
       this.convertedAppointments.push(data);
       
 
+    }
+  }
+
+  sortByChanged(){
+    if(this.sortBy != '' && this.sortType != ''){
+      let data = {
+        id: this.id,
+        sortBy: this.sortBy,
+        sortType: this.sortType
+      }
+      this.quickAppointmentsService.sort(data).subscribe((response: any) => {
+        this.quickAppointments = response;
+        this.corectQuickAppointments();
+      })
+    }
+    
+  }
+
+  sortTypeChanged(){
+    if(this.sortBy != '' && this.sortType != ''){
+      let data = {
+        id: this.id,
+        sortBy: this.sortBy,
+        sortType: this.sortType
+      }
+      this.quickAppointmentsService.sort(data).subscribe((response: any) => {
+        this.quickAppointments = response;
+        this.corectQuickAppointments();
+      })
     }
   }
 

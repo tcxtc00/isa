@@ -4,6 +4,7 @@ public class SortDTO {
 	
 	private String sortBy;
 	private String sortType;
+	private Long id;
 	public String getSortBy() {
 		return sortBy;
 	}
@@ -16,6 +17,14 @@ public class SortDTO {
 	public void setSortType(String sortType) {
 		this.sortType = sortType;
 	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
 	
 	
 

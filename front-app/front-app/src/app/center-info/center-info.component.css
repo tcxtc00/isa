@@ -37,27 +37,36 @@ button:hover {
     margin-left: auto;
     margin-right: auto;
     margin-top: 5px;
-  }
-  
-  #revisions {
+}
+
+#revisions {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
-  }
-  
-  #revisions td, #revisions th {
+}
+
+#revisions td,
+#revisions th {
     border: 1px solid #ddd;
     padding: 8px;
-  }
-  
-  #revisions tr:nth-child(even){background-color: #f2f2f2;}
-  
-  #revisions tr:hover {background-color: #ddd;}
-  
-  #revisions th {
+}
+
+#revisions tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#revisions tr:hover {
+    background-color: #ddd;
+}
+
+#revisions th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
     background-color: #d3b0aa;
     color: white;
-  }
+}
+
+.mat-radio-button~.mat-radio-button {
+    margin-left: 16px;
+}
