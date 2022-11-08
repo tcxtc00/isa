@@ -22,8 +22,8 @@ public class AvailableAppointment {
 	@Column(name = "start_date", nullable = false)
 	private LocalDateTime startDate;
 	
-	@Column(name = "end_date", nullable = false)
-	private LocalDateTime endDate;
+	@Column(name = "duration", nullable = false)
+	private Long duration;
 	
 	@JsonBackReference
 	@ManyToOne
@@ -46,14 +46,6 @@ public class AvailableAppointment {
 		this.startDate = startDate;
 	}
 
-	public LocalDateTime getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(LocalDateTime endDate) {
-		this.endDate = endDate;
-	}
-
 	public BloodTransfusionCenter getCenter() {
 		return center;
 	}
@@ -61,6 +53,16 @@ public class AvailableAppointment {
 	public void setCenter(BloodTransfusionCenter center) {
 		this.center = center;
 	}
+
+	public Long getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Long duration) {
+		this.duration = duration;
+	}
+	
+	
 	
 	
 	

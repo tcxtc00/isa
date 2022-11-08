@@ -59,4 +59,10 @@ public class BloodTransfusionCenterServiceImpl implements BloodTransfusionCenter
 		return centers;
 	}
 
+	@Override
+	public BloodTransfusionCenter getById(Long id) {
+		BloodTransfusionCenter center = bloodTransfusionCenterRepository.findById(id).get();
+		return center;
+	}
+
 }

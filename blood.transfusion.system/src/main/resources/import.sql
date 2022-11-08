@@ -102,13 +102,13 @@ INSERT INTO public.appointment_staff(appointment_id, staff_id) VALUES (12, 16);
 INSERT INTO public.appointment_staff(appointment_id, staff_id) VALUES (12, 9);
 
 
-INSERT INTO public.available_appointment(end_date, start_date, center_id) VALUES ('20230302 11:00:00 AM', '20230102 11:00:00 AM', 1);
-INSERT INTO public.available_appointment(end_date, start_date, center_id) VALUES ('20221202 11:00:00 AM', '20221102 11:00:00 AM', 1);
-INSERT INTO public.available_appointment(end_date, start_date, center_id) VALUES ('20230502 10:00:00 AM', '20230402 11:00:00 AM', 1);
-INSERT INTO public.available_appointment(end_date, start_date, center_id) VALUES ('20221209 08:00:00 AM', '20221012 10:00:00 AM', 2);
-INSERT INTO public.available_appointment(end_date, start_date, center_id) VALUES ('20230220 11:00:00 AM', '20230110 10:00:00 AM', 2);
-INSERT INTO public.available_appointment(end_date, start_date, center_id) VALUES ('20230321 09:00:00 AM', '20230307 10:00:00 AM', 2);
-INSERT INTO public.available_appointment(end_date, start_date, center_id) VALUES ('20230202 11:00:00 AM', '20230120 09:00:00 AM', 3);
-INSERT INTO public.available_appointment(end_date, start_date, center_id) VALUES ('20230121 11:00:00 AM', '20221217 09:00:00 AM', 3);
-INSERT INTO public.available_appointment(end_date, start_date, center_id) VALUES ('20230123 08:00:00 AM', '20230111 08:00:00 AM', 4);
-INSERT INTO public.available_appointment(end_date, start_date, center_id) VALUES ('20230311 10:00:00 AM', '20230212 08:00:00 AM', 4);
+INSERT INTO public.available_appointment(duration, start_date, center_id) VALUES (30, '20230102 11:00:00 AM', 1);
+INSERT INTO public.available_appointment(duration, start_date, center_id) VALUES (30, '20221102 11:00:00 AM', 1);
+INSERT INTO public.available_appointment(duration, start_date, center_id) VALUES (30, '20230402 11:00:00 AM', 1);
+INSERT INTO public.available_appointment(duration, start_date, center_id) VALUES (30, '20221012 10:00:00 AM', 2);
+INSERT INTO public.available_appointment(duration, start_date, center_id) VALUES (30, '20230110 10:00:00 AM', 2);
+INSERT INTO public.available_appointment(duration, start_date, center_id) VALUES (30, '20230307 10:00:00 AM', 2);
+INSERT INTO public.available_appointment(duration, start_date, center_id) VALUES (30, '20230120 09:00:00 AM', 3);
+INSERT INTO public.available_appointment(duration, start_date, center_id) VALUES (30, '20221217 09:00:00 AM', 3);
+INSERT INTO public.available_appointment(duration, start_date, center_id) VALUES (30, '20230111 08:00:00 AM', 4);
+INSERT INTO public.available_appointment(duration, start_date, center_id) VALUES (30, '20230212 08:00:00 AM', 4);

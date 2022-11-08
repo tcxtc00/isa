@@ -19,6 +19,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatIconModule} from '@angular/material/icon';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { CenterInfoComponent } from './center-info/center-info.component';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     ActivationAccountComponent,
     BloodTransfusionCenterComponent,
     QuestionnaireComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    CenterInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     MatSnackBarModule,
     MatSelectModule,
     MatRadioModule,
-    MatIconModule
+    MatIconModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

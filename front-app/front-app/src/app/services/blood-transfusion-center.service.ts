@@ -28,4 +28,8 @@ export class BloodTransfusionCenterService {
     return this.httpClient.post(this.baseUrl + 'sort', data, this.getAuthoHeader())
   }
 
+  getById(id: any){
+    return this.httpClient.get(this.baseUrl + 'center/' + id,  this.getAuthoHeader())
+  }
+
 }

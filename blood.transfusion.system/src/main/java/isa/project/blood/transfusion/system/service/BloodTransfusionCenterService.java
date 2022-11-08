@@ -9,4 +9,5 @@ public interface BloodTransfusionCenterService {
 
 	public List<BloodTransfusionCenter> getAll();
 	public List<BloodTransfusionCenter> sort(SortDTO sortDTO);
+	public BloodTransfusionCenter getById(Long id);
 }

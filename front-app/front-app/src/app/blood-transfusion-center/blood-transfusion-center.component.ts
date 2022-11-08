@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BloodTransfusionCenterService } from '../services/blood-transfusion-center.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { BloodTransfusionCenterService } from '../services/blood-transfusion-cen
 })
 export class BloodTransfusionCenterComponent implements OnInit {
 
-  constructor(private bloodTransfusionCenterService: BloodTransfusionCenterService) { }
+  constructor(private bloodTransfusionCenterService: BloodTransfusionCenterService, private router: Router) { }
 
   centers: any[]
   sortBy = ''
@@ -19,6 +20,7 @@ export class BloodTransfusionCenterComponent implements OnInit {
   ngOnInit(): void {
     this.bloodTransfusionCenterService.getAll().subscribe((response: any) => {
       this.centers = response;
+      console.log(this.centers)
       let userStrng = localStorage.getItem('user');
       if(userStrng) {
       this.user = JSON.parse(userStrng);
@@ -51,6 +53,10 @@ export class BloodTransfusionCenterComponent implements OnInit {
         this.centers = response;
       })
     }
+  }
+
+  centerInfo(id: any){
+    this.router.navigate(['/center', id])
   }
 
 

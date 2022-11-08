@@ -50,7 +50,7 @@ public class BloodTransfusionCenter {
 	
 	@JsonManagedReference
 	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY)
-	private Set<QuickAppointment> quickAppointents;
+	private Set<QuickAppointment> quickAppointments;
 
 	public Long getId() {
 		return id;
@@ -118,12 +118,12 @@ public class BloodTransfusionCenter {
 		this.staffs = staffs;
 	}
 
-	public Set<QuickAppointment> getQuickAppointents() {
-		return quickAppointents;
+	public Set<QuickAppointment> getQuickAppointments() {
+		return quickAppointments;
 	}
 
-	public void setQuickAppointents(Set<QuickAppointment> quickAppointents) {
-		this.quickAppointents = quickAppointents;
+	public void setQuickAppointments(Set<QuickAppointment> quickAppointments) {
+		this.quickAppointments = quickAppointments;
 	}
 	
 	

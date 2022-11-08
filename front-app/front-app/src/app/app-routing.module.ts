@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActivationAccountComponent } from './activation-account/activation-account.component';
 import { BloodTransfusionCenterComponent } from './blood-transfusion-center/blood-transfusion-center.component';
+import { CenterInfoComponent } from './center-info/center-info.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'centers', component: BloodTransfusionCenterComponent},
   {path: 'questionnaire', component: QuestionnaireComponent , canActivate: [AthguardGuard], data:{role: 'ROLE_REGISTEREDUSER'}},
   {path: 'profile', component: UserProfileComponent , canActivate: [AthguardGuard], data:{role: 'ROLE_REGISTEREDUSER'}},
+  {path: 'center/:id', component: CenterInfoComponent , canActivate: [AthguardGuard], data:{role: 'ROLE_REGISTEREDUSER'}},
 
 ];
 
