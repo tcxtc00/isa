@@ -1,16 +1,26 @@
 package isa.project.blood.transfusion.system.service.impl;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+
+import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.zxing.WriterException;
+
+import isa.project.blood.transfusion.system.dto.AppointmentDTO;
 import isa.project.blood.transfusion.system.dto.SortDTO;
 import isa.project.blood.transfusion.system.model.BloodTransfusionCenter;
 import isa.project.blood.transfusion.system.model.QuickAppointment;
+import isa.project.blood.transfusion.system.model.RegisteredUser;
 import isa.project.blood.transfusion.system.repository.BloodTransfusionCenterRepository;
 import isa.project.blood.transfusion.system.repository.QuickAppointmentsRepository;
+import isa.project.blood.transfusion.system.repository.UserRepository;
+import isa.project.blood.transfusion.system.service.EmailService;
+import isa.project.blood.transfusion.system.service.QRCodeService;
 import isa.project.blood.transfusion.system.service.QuickAppointmentsService;
 
 @Service
@@ -21,6 +31,15 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 	
 	@Autowired
 	private QuickAppointmentsRepository quickAppointmentsRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private QRCodeService qrCodeService;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	@Override
 	public List<QuickAppointment> sort(SortDTO sortDTO) {
@@ -51,6 +70,23 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 		}
 		
 		return appointments;
+	}
+
+	@Override
+	public QuickAppointment book(AppointmentDTO appointmentDTO) {
+		
+		QuickAppointment appointment = quickAppointmentsRepository.findById(appointmentDTO.getId()).get();
+		RegisteredUser user = (RegisteredUser) userRepository.findByUsername(appointmentDTO.getUsername());
+		appointment.setUser(user);
+		try {
+			String fileName = qrCodeService.createQRCode(appointment, 250, 250).getFileName();
+			emailService.sendQRCode(appointment, fileName);
+		} catch (WriterException | IOException | MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		
+		return quickAppointmentsRepository.save(appointment);
 	}
 
 }

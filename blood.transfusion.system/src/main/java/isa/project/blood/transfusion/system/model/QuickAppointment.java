@@ -39,6 +39,11 @@ public class QuickAppointment {
 	@ManyToOne
 	@JoinColumn(name = "center_id")
 	private BloodTransfusionCenter center;
+	
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private RegisteredUser user;
 
 	public Long getId() {
 		return id;
@@ -79,6 +84,16 @@ public class QuickAppointment {
 	public void setCenter(BloodTransfusionCenter center) {
 		this.center = center;
 	}
+
+	public RegisteredUser getUser() {
+		return user;
+	}
+
+	public void setUser(RegisteredUser user) {
+		this.user = user;
+	}
+	
+	
 	
 	
 	

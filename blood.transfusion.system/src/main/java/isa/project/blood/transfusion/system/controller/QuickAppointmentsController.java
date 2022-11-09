@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import isa.project.blood.transfusion.system.dto.AppointmentDTO;
 import isa.project.blood.transfusion.system.dto.SortDTO;
 import isa.project.blood.transfusion.system.service.QuickAppointmentsService;
 
@@ -24,5 +25,13 @@ public class QuickAppointmentsController {
 	public ResponseEntity<?> sort(@RequestBody SortDTO sortDTO){
 		return new ResponseEntity<>(quickAppointmentsService.sort(sortDTO), HttpStatus.OK);
 	}
+	
+	@PreAuthorize("hasRole('REGISTEREDUSER')")
+	@PostMapping(path = "/book")
+	public ResponseEntity<?> book(@RequestBody AppointmentDTO appointmentDTO){
+		return new ResponseEntity<>(quickAppointmentsService.book(appointmentDTO), HttpStatus.OK);
+	}
+	
+	
 
 }
