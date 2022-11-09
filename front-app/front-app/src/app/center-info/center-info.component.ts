@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { BloodTransfusionCenterService } from '../services/blood-transfusion-center.service';
 import { QuickAppointmentsService } from '../services/quick-appointments.service';
@@ -18,12 +19,19 @@ export class CenterInfoComponent implements OnInit {
   convertedAppointments: any[]
   sortBy = ''
   sortType = ''
-  constructor(private activatedRoute: ActivatedRoute, private bloodTransfusionCenterService: BloodTransfusionCenterService, private quickAppointmentsService: QuickAppointmentsService) { }
+  username: any
+  constructor(private matSnackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private bloodTransfusionCenterService: BloodTransfusionCenterService, private quickAppointmentsService: QuickAppointmentsService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id']
       console.log(this.id)
+      let userStrng = localStorage.getItem('user');
+      if (userStrng) {
+        let user = JSON.parse(userStrng);
+        this.username = user.username
+
+      }
       this.bloodTransfusionCenterService.getById(this.id).subscribe((response: any) => {
         this.center = response;
         this.appointments = this.center.appointments
@@ -50,7 +58,7 @@ export class CenterInfoComponent implements OnInit {
         staffs: staffs
       }
       this.convertedQuickAppointments.push(data);
-      
+
 
     }
   }
@@ -69,13 +77,13 @@ export class CenterInfoComponent implements OnInit {
         duration: duration
       }
       this.convertedAppointments.push(data);
-      
+
 
     }
   }
 
-  sortByChanged(){
-    if(this.sortBy != '' && this.sortType != ''){
+  sortByChanged() {
+    if (this.sortBy != '' && this.sortType != '') {
       let data = {
         id: this.id,
         sortBy: this.sortBy,
@@ -86,11 +94,11 @@ export class CenterInfoComponent implements OnInit {
         this.corectQuickAppointments();
       })
     }
-    
+
   }
 
-  sortTypeChanged(){
-    if(this.sortBy != '' && this.sortType != ''){
+  sortTypeChanged() {
+    if (this.sortBy != '' && this.sortType != '') {
       let data = {
         id: this.id,
         sortBy: this.sortBy,
@@ -101,6 +109,26 @@ export class CenterInfoComponent implements OnInit {
         this.corectQuickAppointments();
       })
     }
+  }
+
+  book(id: any) {
+    let data = {
+      id: id,
+      username: this.username
+    }
+    this.quickAppointmentsService.book(data).subscribe((response: any) => {
+      console.log(response)
+      this.bloodTransfusionCenterService.getById(this.id).subscribe((response: any) => {
+        this.center = response;
+        this.appointments = this.center.appointments
+        this.quickAppointments = this.center.quickAppointments
+        this.corectQuickAppointments();
+        this.corectAppointments();
+      })
+      this.matSnackBar.open('Uspešno ste rezervisali termin za davanje krvi.', 'Close', { duration: 3500 })
+    }, error => {
+      this.matSnackBar.open('Rezervacija termina nije uspela.', 'Close', { duration: 3500 })
+    })
   }
 
 

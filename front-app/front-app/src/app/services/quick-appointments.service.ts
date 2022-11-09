@@ -24,4 +24,8 @@ export class QuickAppointmentsService {
     return this.httpClient.post(this.baseUrl + 'sort', data, this.getAuthoHeader())
   }
 
+  book(data: any) {
+    return this.httpClient.post(this.baseUrl + 'book', data, this.getAuthoHeader())
+  }
+
 }

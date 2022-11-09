@@ -32,7 +32,7 @@
                 <tr *ngFor="let appointment of convertedQuickAppointments">
                     <td>{{appointment.date| date:'medium'}}</td>
                     <td>{{appointment.duration}} min</td>
-                    <td><button>Rezerviši</button></td>
+                    <td><button (click)="book(appointment.id)">Rezerviši</button></td>
                 </tr>
             </table>
         </div>

@@ -2,12 +2,16 @@ package isa.project.blood.transfusion.system.service.impl;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import isa.project.blood.transfusion.system.dto.SortDTO;
+import isa.project.blood.transfusion.system.model.AppointmentStatus;
 import isa.project.blood.transfusion.system.model.BloodTransfusionCenter;
+import isa.project.blood.transfusion.system.model.QuickAppointment;
 import isa.project.blood.transfusion.system.repository.BloodTransfusionCenterRepository;
 import isa.project.blood.transfusion.system.service.BloodTransfusionCenterService;
 
@@ -62,6 +66,11 @@ public class BloodTransfusionCenterServiceImpl implements BloodTransfusionCenter
 	@Override
 	public BloodTransfusionCenter getById(Long id) {
 		BloodTransfusionCenter center = bloodTransfusionCenterRepository.findById(id).get();
+		Set<QuickAppointment> appointments = center.getQuickAppointments();
+		Set<QuickAppointment> filteredAppointments = appointments.stream()
+				.filter(a -> (a.getStatus().equals(AppointmentStatus.Free)))
+                .collect(Collectors.toSet());
+		center.setQuickAppointments(filteredAppointments);
 		return center;
 	}
 

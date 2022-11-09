@@ -29,6 +29,9 @@ public class QuickAppointment {
 	@Column(name = "duration", nullable = false)
 	private Long duration;
 	
+	@Column(name = "status", nullable = false)
+	private AppointmentStatus status;
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "appointment_staff",
 				joinColumns = @JoinColumn(name = "appointment_id", referencedColumnName = "id"),
@@ -92,6 +95,16 @@ public class QuickAppointment {
 	public void setUser(RegisteredUser user) {
 		this.user = user;
 	}
+
+	public AppointmentStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(AppointmentStatus status) {
+		this.status = status;
+	}
+	
+	
 	
 	
 	

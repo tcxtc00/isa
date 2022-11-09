@@ -13,6 +13,7 @@ import com.google.zxing.WriterException;
 
 import isa.project.blood.transfusion.system.dto.AppointmentDTO;
 import isa.project.blood.transfusion.system.dto.SortDTO;
+import isa.project.blood.transfusion.system.model.AppointmentStatus;
 import isa.project.blood.transfusion.system.model.BloodTransfusionCenter;
 import isa.project.blood.transfusion.system.model.QuickAppointment;
 import isa.project.blood.transfusion.system.model.RegisteredUser;
@@ -45,7 +46,7 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 	public List<QuickAppointment> sort(SortDTO sortDTO) {
 		
 		BloodTransfusionCenter center = bloodTransfusionCenterRepository.findById(sortDTO.getId()).get();
-		List<QuickAppointment> appointments = quickAppointmentsRepository.findByCenter(center);
+		List<QuickAppointment> appointments = quickAppointmentsRepository.findByCenterAndStatus(center, AppointmentStatus.Free);
 		
 		if(sortDTO.getSortBy().equals("Date")) {
 			if(sortDTO.getSortType().equals("Ascending")) {
@@ -76,6 +77,7 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 	public QuickAppointment book(AppointmentDTO appointmentDTO) {
 		
 		QuickAppointment appointment = quickAppointmentsRepository.findById(appointmentDTO.getId()).get();
+		appointment.setStatus(AppointmentStatus.Booked);
 		RegisteredUser user = (RegisteredUser) userRepository.findByUsername(appointmentDTO.getUsername());
 		appointment.setUser(user);
 		try {
