@@ -21,6 +21,7 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CenterInfoComponent } from './center-info/center-info.component';
 import {MatListModule} from '@angular/material/list';
+import { NotPassedAppointmentsComponent } from './not-passed-appointments/not-passed-appointments.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {MatListModule} from '@angular/material/list';
     BloodTransfusionCenterComponent,
     QuestionnaireComponent,
     UserProfileComponent,
-    CenterInfoComponent
+    CenterInfoComponent,
+    NotPassedAppointmentsComponent
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ import { BloodTransfusionCenterComponent } from './blood-transfusion-center/bloo
 import { CenterInfoComponent } from './center-info/center-info.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
+import { NotPassedAppointmentsComponent } from './not-passed-appointments/not-passed-appointments.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AthguardGuard } from './shared/athguard.guard';
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'questionnaire', component: QuestionnaireComponent , canActivate: [AthguardGuard], data:{role: 'ROLE_REGISTEREDUSER'}},
   {path: 'profile', component: UserProfileComponent , canActivate: [AthguardGuard], data:{role: 'ROLE_REGISTEREDUSER'}},
   {path: 'center/:id', component: CenterInfoComponent , canActivate: [AthguardGuard], data:{role: 'ROLE_REGISTEREDUSER'}},
+  {path: 'notPassedAppointments', component: NotPassedAppointmentsComponent , canActivate: [AthguardGuard], data:{role: 'ROLE_REGISTEREDUSER'}},
 
 ];
 

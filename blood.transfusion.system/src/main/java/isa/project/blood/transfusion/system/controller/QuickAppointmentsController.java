@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,11 @@ public class QuickAppointmentsController {
 	@PostMapping(path = "/book")
 	public ResponseEntity<?> book(@RequestBody AppointmentDTO appointmentDTO){
 		return new ResponseEntity<>(quickAppointmentsService.book(appointmentDTO), HttpStatus.OK);
+	}
+	@PreAuthorize("hasRole('REGISTEREDUSER')")
+	@GetMapping(path = "/notPassed/{username}")
+	public ResponseEntity<?> notPassed(@PathVariable String username){
+		return new ResponseEntity<>(quickAppointmentsService.notPassed(username), HttpStatus.OK);
 	}
 	
 	

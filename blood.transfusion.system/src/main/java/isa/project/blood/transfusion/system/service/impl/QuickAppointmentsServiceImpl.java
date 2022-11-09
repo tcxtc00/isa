@@ -1,8 +1,10 @@
 package isa.project.blood.transfusion.system.service.impl;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.mail.MessagingException;
 
@@ -89,6 +91,16 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 		}	
 		
 		return quickAppointmentsRepository.save(appointment);
+	}
+
+	@Override
+	public List<QuickAppointment> notPassed(String username) {
+		RegisteredUser user = (RegisteredUser) userRepository.findByUsername(username);
+		List<QuickAppointment> appointments = quickAppointmentsRepository.findByStatusAndUser(AppointmentStatus.Booked, user);
+		List<QuickAppointment> filteredAppointments = appointments.stream().
+				filter(a -> (a.getDate().compareTo(LocalDateTime.now())>= 0))
+                .collect(Collectors.toList());
+		return filteredAppointments;
 	}
 
 }

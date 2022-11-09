@@ -10,5 +10,6 @@ public interface QuickAppointmentsService {
 	
 	public List<QuickAppointment> sort(SortDTO sortDTO);
 	public QuickAppointment book(AppointmentDTO appointmentDTO);
+	public List<QuickAppointment> notPassed(String username);
 
 }

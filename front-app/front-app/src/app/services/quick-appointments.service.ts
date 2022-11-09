@@ -28,4 +28,8 @@ export class QuickAppointmentsService {
     return this.httpClient.post(this.baseUrl + 'book', data, this.getAuthoHeader())
   }
 
+  notPassed(username: any){
+    return this.httpClient.get(this.baseUrl + 'notPassed/' + username, this.getAuthoHeader())
+  }
+
 }
