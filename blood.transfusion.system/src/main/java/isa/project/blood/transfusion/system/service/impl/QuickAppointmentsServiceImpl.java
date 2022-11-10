@@ -2,8 +2,11 @@ package isa.project.blood.transfusion.system.service.impl;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.mail.MessagingException;
@@ -14,11 +17,13 @@ import org.springframework.stereotype.Service;
 import com.google.zxing.WriterException;
 
 import isa.project.blood.transfusion.system.dto.AppointmentDTO;
+import isa.project.blood.transfusion.system.dto.AppointmentResponseDTO;
 import isa.project.blood.transfusion.system.dto.SortDTO;
 import isa.project.blood.transfusion.system.model.AppointmentStatus;
 import isa.project.blood.transfusion.system.model.BloodTransfusionCenter;
 import isa.project.blood.transfusion.system.model.QuickAppointment;
 import isa.project.blood.transfusion.system.model.RegisteredUser;
+import isa.project.blood.transfusion.system.model.Staff;
 import isa.project.blood.transfusion.system.repository.BloodTransfusionCenterRepository;
 import isa.project.blood.transfusion.system.repository.QuickAppointmentsRepository;
 import isa.project.blood.transfusion.system.repository.UserRepository;
@@ -81,6 +86,12 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 		QuickAppointment appointment = quickAppointmentsRepository.findById(appointmentDTO.getId()).get();
 		appointment.setStatus(AppointmentStatus.Booked);
 		RegisteredUser user = (RegisteredUser) userRepository.findByUsername(appointmentDTO.getUsername());
+		Set<QuickAppointment> appointments = user.getAppointments();
+		for(QuickAppointment qa: appointments) {
+			if(qa.getCenter().getId() == appointment.getCenter().getId() && qa.getDate().compareTo(appointment.getDate()) == 0 && qa.getDuration() == appointment.getDuration()) {
+				return null;
+			}
+		}
 		appointment.setUser(user);
 		try {
 			String fileName = qrCodeService.createQRCode(appointment, 250, 250).getFileName();
@@ -94,13 +105,45 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 	}
 
 	@Override
-	public List<QuickAppointment> notPassed(String username) {
+	public List<AppointmentResponseDTO> notPassed(String username) {
 		RegisteredUser user = (RegisteredUser) userRepository.findByUsername(username);
 		List<QuickAppointment> appointments = quickAppointmentsRepository.findByStatusAndUser(AppointmentStatus.Booked, user);
 		List<QuickAppointment> filteredAppointments = appointments.stream().
 				filter(a -> (a.getDate().compareTo(LocalDateTime.now())>= 0))
                 .collect(Collectors.toList());
-		return filteredAppointments;
+		List<AppointmentResponseDTO> result = new ArrayList<>();
+		for(QuickAppointment qa: filteredAppointments) {
+			AppointmentResponseDTO appointment = new AppointmentResponseDTO();
+			appointment.setDate(qa.getDate());
+			appointment.setDuration(qa.getDuration());
+			appointment.setId(qa.getId());
+			if(qa.getDate().minusHours(24).compareTo(LocalDateTime.now()) >= 0) {
+				appointment.setCanCancel(true);
+			}else {
+				appointment.setCanCancel(false);
+			}
+			result.add(appointment);
+		}
+		return result;
+	}
+
+	@Override
+	public QuickAppointment cancel(Long id) {
+		QuickAppointment appointment = quickAppointmentsRepository.findById(id).get();
+		appointment.setStatus(AppointmentStatus.Canceled);
+		quickAppointmentsRepository.save(appointment);
+		QuickAppointment sameAppointment = new QuickAppointment();
+		sameAppointment.setCenter(appointment.getCenter());
+		sameAppointment.setDate(appointment.getDate());
+		sameAppointment.setDuration(appointment.getDuration());
+		Set<Staff> staffs = new HashSet<>();
+		for(Staff staff: appointment.getStaffs()) {
+			staffs.add(staff);
+		}
+		sameAppointment.setStaffs(staffs);
+		sameAppointment.setStatus(AppointmentStatus.Free);
+		
+		return quickAppointmentsRepository.save(sameAppointment);
 	}
 
 }

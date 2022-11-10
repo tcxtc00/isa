@@ -127,7 +127,7 @@ export class CenterInfoComponent implements OnInit {
       })
       this.matSnackBar.open('Uspešno ste rezervisali termin za davanje krvi.', 'Close', { duration: 3500 })
     }, error => {
-      this.matSnackBar.open('Rezervacija termina nije uspela.', 'Close', { duration: 3500 })
+      this.matSnackBar.open('Rezervacija termina za davanje krvi nije uspela. Možete samo jednom da zakažete termin u istom centru u isto vreme.', 'Close', { duration: 5000 })
     })
   }
 

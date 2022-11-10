@@ -22,6 +22,6 @@ export class AppComponent {
 
   logout(){
     localStorage.clear();
-    location.reload();
+    location.replace('/');
   }
 }

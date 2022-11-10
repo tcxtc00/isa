@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { QuickAppointmentsService } from '../services/quick-appointments.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class NotPassedAppointmentsComponent implements OnInit {
   quickAppointments: any[]
   convertedQuickAppointments: any[]
   username: any
-  constructor(private quickAppointmentsService: QuickAppointmentsService) { }
+  constructor(private matSnackBar: MatSnackBar, private quickAppointmentsService: QuickAppointmentsService) { }
 
   ngOnInit(): void {
     let userStrng = localStorage.getItem('user');
@@ -34,17 +35,35 @@ export class NotPassedAppointmentsComponent implements OnInit {
       let duration = a.duration;
       let id = a.id;
       let staffs = a.staffs;
+      let canCancel = a.canCancel;
 
       let data = {
         id: id,
         date: date,
         duration: duration,
-        staffs: staffs
+        staffs: staffs,
+        canCancel: canCancel
       }
       this.convertedQuickAppointments.push(data);
 
 
     }
+  }
+
+  cancel(id: any){
+    let data = {
+      id: id
+    }
+    this.quickAppointmentsService.cancel(data).subscribe((response: any) => {
+      console.log(response)
+      this.quickAppointmentsService.notPassed(this.username).subscribe((response: any) => {
+        this.quickAppointments = response;
+        this.corectQuickAppointments()
+      })
+      this.matSnackBar.open('Uspešno ste otkazali termin za davanje krvi.', 'Close', { duration: 3500 })
+    }, error => {
+      this.matSnackBar.open('Otkazivanje termina nije uspelo.', 'Close', { duration: 3500 })
+    })
   }
 
 }

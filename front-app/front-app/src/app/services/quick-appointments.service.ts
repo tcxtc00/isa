@@ -32,4 +32,8 @@ export class QuickAppointmentsService {
     return this.httpClient.get(this.baseUrl + 'notPassed/' + username, this.getAuthoHeader())
   }
 
+  cancel(data: any){
+    return this.httpClient.put(this.baseUrl + 'cancel', data, this.getAuthoHeader())
+  }
+
 }

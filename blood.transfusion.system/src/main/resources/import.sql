@@ -80,6 +80,10 @@ INSERT INTO public.quick_appointment(date, duration, status,  center_id) VALUES 
 INSERT INTO public.quick_appointment(date, duration, status, center_id) VALUES ('20230104 07:00:00 AM', 30, 0, 4);
 
 
+INSERT INTO public.quick_appointment(date, duration, status, center_id, user_id) VALUES ('20221111 07:00:00 AM', 30, 1, 1, 17);
+INSERT INTO public.quick_appointment(date, duration, status, center_id, user_id) VALUES ('20221115 07:00:00 AM', 35, 1, 1, 17);
+
+
 INSERT INTO public.appointment_staff(appointment_id, staff_id) VALUES (1, 9);
 INSERT INTO public.appointment_staff(appointment_id, staff_id) VALUES (1, 10);
 INSERT INTO public.appointment_staff(appointment_id, staff_id) VALUES (2, 9);
@@ -100,6 +104,10 @@ INSERT INTO public.appointment_staff(appointment_id, staff_id) VALUES (11, 15);
 INSERT INTO public.appointment_staff(appointment_id, staff_id) VALUES (11, 16);
 INSERT INTO public.appointment_staff(appointment_id, staff_id) VALUES (12, 16);
 INSERT INTO public.appointment_staff(appointment_id, staff_id) VALUES (12, 9);
+
+INSERT INTO public.appointment_staff(appointment_id, staff_id) VALUES (13, 9);
+INSERT INTO public.appointment_staff(appointment_id, staff_id) VALUES (14, 9);
+INSERT INTO public.appointment_staff(appointment_id, staff_id) VALUES (14, 10);
 
 
 INSERT INTO public.available_appointment(duration, start_date, center_id) VALUES (45, '20230102 11:00:00 AM', 1);

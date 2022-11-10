@@ -12,7 +12,7 @@
                 <tr *ngFor="let appointment of convertedQuickAppointments">
                     <td>{{appointment.date| date:'medium'}}</td>
                     <td>{{appointment.duration}} min</td>
-                    <td><button>Otkaži</button></td>
+                    <td><button (click) = "cancel(appointment.id)" *ngIf="appointment.canCancel">Otkaži</button></td>
                 </tr>
             </table>
         </div>
