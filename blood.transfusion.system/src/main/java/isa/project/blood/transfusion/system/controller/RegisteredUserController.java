@@ -64,14 +64,6 @@ public class RegisteredUserController {
 		registeredUserService.changeStatusToAccepted(username);
 		return new RedirectView("http://localhost:4200/accountActivation");
 	}
-
-	
-	/*@PreAuthorize("hasRole('REGISTEREDUSER')")
-	@GetMapping(path = "/all")
-	public ResponseEntity<?> getAll(){
-		return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
-	}*/
 		
-	
 
 }

@@ -26,7 +26,16 @@
                 <p><i>{{center.description}}</i></p>
                 <p>Adresa: {{center.address}}, {{center.city}}</p>
                 <p>Ocena: {{center.rate}}</p>
-                <button (click)="centerInfo(center.id)">Dodatne informacije</button>
+                <mat-list>
+                    <div mat-subheader>Administratori:</div>
+                    <mat-list-item *ngFor="let staff of center.staffs">
+                      <mat-icon mat-list-icon>person</mat-icon>
+                      <div mat-line>{{staff.name}} {{staff.surname}}</div>
+                      <div mat-line> {{staff.username}} </div>
+                    </mat-list-item>
+                       
+                  </mat-list>
+                    <button (click)="centerInfo(center.id)">Dodatne informacije</button>
             </div>
 
         </div>

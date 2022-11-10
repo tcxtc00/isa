@@ -92,10 +92,10 @@ export class RegistrationComponent implements OnInit {
       }
       this.userService.register(data).subscribe((response: any) => {
         console.log(response);
-        this.matSnackBar.open('Uspešno ste se registrovali. Poslali smo vam aktivacioni link na mail.', 'Close', {duration: 3500})
+        this.matSnackBar.open('Uspešno ste se registrovali. Poslali smo Vam aktivacioni link na e-mail.', 'Close', {duration: 4500})
         this.router.navigate(['/'])
       }, error => {
-        this.matSnackBar.open('Registracija nije uspela!', 'Close', {duration: 3500})
+        this.matSnackBar.open('Registracija nije uspela! Pokušajte sa drugim e-mail-om.', 'Close', {duration: 5000})
       }
       )
 

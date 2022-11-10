@@ -28,6 +28,11 @@ public class BloodTransfusionCenterServiceImpl implements BloodTransfusionCenter
 
 	@Override
 	public List<BloodTransfusionCenter> sort(SortDTO sortDTO) {
+		
+		if(sortDTO.getSortBy().equals("") || sortDTO.getSortType().equals("")) {
+			return null;
+		}
+		
 		List<BloodTransfusionCenter> centers = bloodTransfusionCenterRepository.findAll();
 		if(sortDTO.getSortBy().equals("Name")) {
 			if(sortDTO.getSortType().equals("Ascending")) {

@@ -32,7 +32,7 @@ public class QRCodeServiceImpl implements QRCodeService{
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 		String formattedDateTime = quickAppointment.getDate().format(formatter);
 		QRCodeWriter qrCodeWriter = new QRCodeWriter();
-        BitMatrix bitMatrix = qrCodeWriter.encode("Informacije o terminu:\n\n" + "Datum: "+ formattedDateTime + "\nTrajanje: " + quickAppointment.getDuration() + " min" + "\n\nHvala vam sto dajete krv." + "\nUzimajuci - punimo ruke, dajuci - punimo srce (Margarete Semann)"  , BarcodeFormat.QR_CODE, width, height);
+        BitMatrix bitMatrix = qrCodeWriter.encode("Informacije o terminu:\n\n" + "Datum: "+ formattedDateTime + "\nTrajanje: " + quickAppointment.getDuration() + " min" + "\n\nHvala Vam sto dajete krv." + "\nUzimajuci - punimo ruke, dajuci - punimo srce (Margarete Semann)"  , BarcodeFormat.QR_CODE, width, height);
         Path path = FileSystems.getDefault().getPath(QR_CODE_IMAGE_PATH + quickAppointment.getUser().getUsername() + "_" + quickAppointment.getId() + ".png");
         MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
         ByteArrayOutputStream pngOutputStream = new ByteArrayOutputStream();

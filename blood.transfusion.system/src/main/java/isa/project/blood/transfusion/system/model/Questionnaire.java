@@ -90,7 +90,7 @@ public class Questionnaire {
 	@Column(name = "has_period")
 	private boolean hasPeriod;
 	
-	@Column(name = "date")
+	@Column(name = "date", nullable = false)
 	private LocalDateTime date;
 
 	public Long getId() {

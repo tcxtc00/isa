@@ -2,16 +2,12 @@ package isa.project.blood.transfusion.system.model;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -42,10 +38,8 @@ public class BloodTransfusionCenter {
 	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY)
 	private Set<AvailableAppointment> appointments;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "center_staff",
-				joinColumns = @JoinColumn(name = "center_id", referencedColumnName = "id"),
-				inverseJoinColumns = @JoinColumn(name = "staff_id", referencedColumnName = "id"))
+	@JsonManagedReference
+	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY)
 	private Set<Staff> staffs;
 	
 	@JsonManagedReference

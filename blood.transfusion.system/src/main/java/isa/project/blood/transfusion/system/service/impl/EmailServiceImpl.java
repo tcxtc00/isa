@@ -38,8 +38,8 @@ public class EmailServiceImpl implements EmailService{
 	    helper.setTo(new InternetAddress(user.getUsername()));
 	    helper.setFrom(new InternetAddress(env.getProperty("spring.mail.username")));
 	    helper.setSubject("Aktivacija naloga");
-	    helper.setText("Poštovani/a " + ",\n\nZa aktivaciju naloga kliknite na link ispod." + "\n\nhttp://localhost:8080/api/users/activate/"+ user.getUsername() + "\n\nHvala vam što pristupate uslugama naše aplikacije. "
-	    		+ "Nakon što aktivirate vaš nalog, možete da rezervišete odgovarajući termin i postanete davalac krvi." + 
+	    helper.setText("Poštovani/a " + ",\n\nZa aktivaciju naloga kliknite na link ispod." + "\n\nhttp://localhost:8080/api/users/activate/"+ user.getUsername() + "\n\nHvala Vam što pristupate uslugama naše aplikacije. "
+	    		+ "Nakon što aktivirate Vaš nalog, možete da rezervišete odgovarajući termin i postanete davalac krvi." + 
 	    		"\nUzimajući - punimo ruke, dajući - punimo srce (Margarete Semann)" + "\nZa sva dalja pitanja pišite nam na mail bloodtransfusion@gmail.com ili nas kontaktirajte na broj 064364534645." + "\n\nPozdrav");
 	    javaMailSender.send(message);
 		
@@ -54,7 +54,7 @@ public class EmailServiceImpl implements EmailService{
 	    helper.setTo(new InternetAddress(appointment.getUser().getUsername()));
 	    helper.setFrom(new InternetAddress(env.getProperty("spring.mail.username")));
 	    helper.setSubject("Termin za davanje krvi");
-	    helper.setText("Poštovani/a" + "\n\nU prilogu vam šaljemo QR kod preko koga možete videti sve informacije vezane za vaš termin za davanje krvi." + "\n\nHvala vam što dajete krv." + "\nUzimajući - punimo ruke, dajući - punimo srce (Margarete Semann)" + "\nZa sva dalja pitanja pišite nam na mail bloodtransfusion@gmail.com ili nas kontaktirajte na broj 064364534645." + "\n\nPozdrav");
+	    helper.setText("Poštovani/a" + "\n\nU prilogu Vam šaljemo QR kod preko koga možete videti sve informacije vezane za Vaš termin za davanje krvi." + "\n\nHvala Vam što dajete krv." + "\nUzimajući - punimo ruke, dajući - punimo srce (Margarete Semann)" + "\nZa sva dalja pitanja pišite nam na mail bloodtransfusion@gmail.com ili nas kontaktirajte na broj 064364534645." + "\n\nPozdrav");
 	    FileSystemResource file = new FileSystemResource(new File(QR_CODE_IMAGE_PATH + path));
         helper.addAttachment(path, file);
 	    javaMailSender.send(message);

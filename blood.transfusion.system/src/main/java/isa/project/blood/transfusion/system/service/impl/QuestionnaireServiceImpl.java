@@ -55,7 +55,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService{
 		if(questionnaireDTO.getHasFeverOrFlu() == null) {
 			return null;
 		}
-		if(user.getGender().equals(Gender.Femaile) && questionnaireDTO.getHasPeriod() == null) {	
+		if(user.getGender().equals(Gender.Female) && questionnaireDTO.getHasPeriod() == null) {	
 			return null;
 		}
 		if(questionnaireDTO.getHasProblemWithGlands() == null) {
@@ -73,7 +73,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService{
 		if(questionnaireDTO.getLowBloodPressure() == null) {
 			return null;
 		}
-		if(user.getGender().equals(Gender.Femaile) && questionnaireDTO.getIsPregnant() == null) {	
+		if(user.getGender().equals(Gender.Female) && questionnaireDTO.getIsPregnant() == null) {	
 			return null;
 		}
 		if(questionnaireDTO.getSuffersFromChronicDiseases() == null) {
@@ -104,7 +104,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService{
 		questionnaire.setDrinkAlcohol(questionnaireDTO.getDrinkAlcohol());
 		questionnaire.setFoodConsume(questionnaireDTO.getFoodConsume());
 		questionnaire.setHasFeverOrFlu(questionnaireDTO.getHasFeverOrFlu());
-		if(user.getGender().equals(Gender.Femaile)) {	
+		if(user.getGender().equals(Gender.Female)) {	
 			questionnaire.setHasPeriod(questionnaireDTO.getHasPeriod());
 		}
 		questionnaire.setHasProblemWithGlands(questionnaireDTO.getHasProblemWithGlands());
@@ -113,7 +113,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService{
 		questionnaire.setLessThan50Kilograms(questionnaireDTO.getLessThan50Kilograms());
 		questionnaire.setLowBloodPressure(questionnaireDTO.getLowBloodPressure());
 		questionnaire.setPiercingOrTattooInLast6Month(questionnaireDTO.getPiercingOrTattooInLast6Month());
-		if(user.getGender().equals(Gender.Femaile)) {	
+		if(user.getGender().equals(Gender.Female)) {	
 			questionnaire.setPregnant(questionnaireDTO.getIsPregnant());		}
 		questionnaire.setSuffersFromChronicDiseases(questionnaireDTO.getSuffersFromChronicDiseases());
 		questionnaire.setTakeMedicineRegulary(questionnaireDTO.getTakeMedicineRegulary());

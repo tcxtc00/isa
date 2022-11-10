@@ -1,5 +1,7 @@
 package isa.project.blood.transfusion.system.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import isa.project.blood.transfusion.system.dto.SortDTO;
+import isa.project.blood.transfusion.system.model.BloodTransfusionCenter;
 import isa.project.blood.transfusion.system.service.BloodTransfusionCenterService;
 
 @RestController
@@ -30,7 +33,11 @@ public class BloodTransfusionCenterController {
 	@PreAuthorize("hasRole('REGISTEREDUSER')")
 	@PostMapping(path = "/sort")
 	public ResponseEntity<?> sort(@RequestBody SortDTO sortDTO){
-		return new ResponseEntity<>(bloodTransfusionCenterService.sort(sortDTO), HttpStatus.OK);
+		List<BloodTransfusionCenter> centers = bloodTransfusionCenterService.sort(sortDTO);
+		if(centers == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<>(centers, HttpStatus.OK);
 	}
 	
 	@PreAuthorize("hasRole('REGISTEREDUSER')")

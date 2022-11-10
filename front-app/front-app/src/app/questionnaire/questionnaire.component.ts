@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { QuestionnaireService } from '../services/questionnaire.service';
 import { UserService } from '../services/user.service';
@@ -59,7 +60,7 @@ export class QuestionnaireComponent implements OnInit {
 
   user: any
 
-  constructor(private questionnaireService: QuestionnaireService, private userService: UserService, private router: Router) { }
+  constructor(private matSnackBar: MatSnackBar, private questionnaireService: QuestionnaireService, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.userService.current().subscribe((response: any) => {
@@ -323,6 +324,10 @@ export class QuestionnaireComponent implements OnInit {
       this.questionnaireService.createQuestionnaire(data).subscribe((response: any) => {
         console.log(response);
         this.router.navigate(['/'])
+        this.matSnackBar.open('Uspešno ste popunili upitnik.', 'Close', {duration: 4000})
+        
+      }, error => {
+        this.matSnackBar.open('Niste uspešno popunili upitnik!', 'Close', {duration: 5000})
       })
 
     }
