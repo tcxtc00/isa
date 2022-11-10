@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <h3>Predstojeći termini</h3>
+        <div class="approval">
+            <table id="customTable">
+                <tr>
+                    <th>Datum</th>
+                    <th>Trajanje</th>
+                    <th>Otkaži</th>
+                </tr>
+                <tr *ngFor="let appointment of convertedQuickAppointments">
+                    <td>{{appointment.date| date:'medium'}}</td>
+                    <td>{{appointment.duration}} min</td>
+                    <td><button (click) = "cancel(appointment.id)" *ngIf="appointment.canCancel">Otkaži</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-3"></div>
+</div>

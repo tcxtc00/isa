@@ -13,6 +13,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ActivationAccountComponent } from './activation-account/activation-account.component';
+import { BloodTransfusionCenterComponent } from './blood-transfusion-center/blood-transfusion-center.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatIconModule} from '@angular/material/icon';
+import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { CenterInfoComponent } from './center-info/center-info.component';
+import {MatListModule} from '@angular/material/list';
+import { NotPassedAppointmentsComponent } from './not-passed-appointments/not-passed-appointments.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +29,12 @@ import { ActivationAccountComponent } from './activation-account/activation-acco
     RegistrationComponent,
     HomepageComponent,
     LoginComponent,
-    ActivationAccountComponent
+    ActivationAccountComponent,
+    BloodTransfusionCenterComponent,
+    QuestionnaireComponent,
+    UserProfileComponent,
+    CenterInfoComponent,
+    NotPassedAppointmentsComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +43,11 @@ import { ActivationAccountComponent } from './activation-account/activation-acco
     FormsModule,
     HttpClientModule,
     NoopAnimationsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

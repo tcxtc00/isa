@@ -1,0 +1,60 @@
+button {
+    width: 100%;
+    background-color: #d3b0aa;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    color: white;
+}
+
+.approval {
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: #e6e2dd;
+    padding: 20px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+}
+
+#customTable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customTable td,
+#customTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#customTable tr:hover {
+    background-color: #ddd;
+}
+
+#customTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #d3b0aa;
+    color: white;
+}
+
+h3 {
+    text-align: center;
+    margin-top: 20px;
+    color: #d3b0aa;
+    margin-bottom: 20px;
+}

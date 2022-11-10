@@ -115,7 +115,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService{
         if(userDTO.getGender().equals("Male")) {
         	registeredUser.setGender(Gender.Male);
         }else if (userDTO.getGender().equals("Female")) {
-        	registeredUser.setGender(Gender.Femaile);
+        	registeredUser.setGender(Gender.Female);
         }     
         try {
 			emailService.registrationEmail(registeredUser);

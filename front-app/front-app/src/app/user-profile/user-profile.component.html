@@ -1,0 +1,89 @@
+<h1>Profil</h1>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-5">
+        <div class="rounded">
+            <h5 style="text-align: center;">Osnovne informacije</h5>
+            <hr>
+            <div class="row" style="margin: 15px 0;">
+                <div class="col-4">
+                    <label class="labelClass" for="email">Ime i prezime:</label>
+                </div>
+                <div class="col-8">
+                    <input type="text" id="email" name="email" value="{{user.name}} {{user.surname}}" disabled>
+                </div>
+            </div>
+            <div class="row" style="margin: 15px 0;">
+                <div class="col-4">
+                    <label class="labelClass" for="email">Email:</label>
+                </div>
+                <div class="col-8">
+                    <input type="text" id="email" name="email" value="{{user.username}}" disabled>
+                </div>
+            </div>
+            <div class="row" style="margin: 15px 0;">
+                <div class="col-4">
+                    <label class="labelClass" for="email">Jmbg:</label>
+                </div>
+                <div class="col-8">
+                    <input type="text" id="email" name="email" value="{{user.jmbg}}" disabled>
+                </div>
+            </div>
+            <div class="row" style="margin: 15px 0;">
+                <div class="col-4">
+                    <label class="labelClass" for="email">Pol:</label>
+                </div>
+                <div class="col-8">
+                    <input type="text" id="email" name="email" value="{{user.gender}}" disabled>
+                </div>
+            </div>
+            <div class="row" style="margin: 15px 0;">
+                <div class="col-4">
+                    <label class="labelClass" for="email">Telefon:</label>
+                </div>
+                <div class="col-8">
+                    <input type="text" id="email" name="email" value="{{user.phoneNumber}}" disabled>
+                </div>
+            </div>
+            <div class="row" style="margin: 15px 0;">
+                <div class="col-4">
+                    <label class="labelClass" for="email">Adresa:</label>
+                </div>
+                <div class="col-8">
+                    <input type="text" id="email" name="email" value="{{user.address}}" disabled>
+                </div>
+            </div>
+            <div class="row" style="margin: 15px 0;">
+                <div class="col-4">
+                    <label class="labelClass" for="email">Grad i država:</label>
+                </div>
+                <div class="col-8">
+                    <input type="text" id="email" name="email" value="{{user.city}}, {{user.country}}" disabled>
+                </div>
+            </div>
+            <div class="row" style="margin: 15px 0;">
+                <div class="col-4">
+                    <label class="labelClass" for="email">Zanimanje:</label>
+                </div>
+                <div class="col-8">
+                    <input type="text" id="email" name="email" value="{{user.profession}}" disabled>
+                </div>
+            </div>
+            <div class="row" style="margin: 15px 0;">
+                <div class="col-7">
+                <label class="labelClass" for="info">Dodatne informacije o zanimanju:</label>
+            </div>
+                <textarea rows="3" [value]="user.professionInfo" ></textarea>
+            </div>
+            
+            
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="rounded">
+            <h5 style="text-align: center;">Penali</h5>
+            <hr>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>

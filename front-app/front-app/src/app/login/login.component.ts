@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
         })
         
       }, error => {
-        this.matSnackBar.open('Email i lozinka nisu ispravni ili niste aktivirali nalog.', 'Close', {duration: 3500})
+        this.matSnackBar.open('E-mail i lozinka nisu ispravni ili niste aktivirali nalog.', 'Close', {duration: 5000})
       })
     }
     
