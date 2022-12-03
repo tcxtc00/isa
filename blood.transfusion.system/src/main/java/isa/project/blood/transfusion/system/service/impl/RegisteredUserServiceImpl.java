@@ -111,6 +111,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService{
         registeredUser.setProfession(userDTO.getProfession());
         registeredUser.setProfessionInfo(userDTO.getProfessionInfo());
         registeredUser.setJmbg(userDTO.getJmbg());
+        registeredUser.setPenalties(0);
         registeredUser.setStatus(UserStatus.Pending);
         if(userDTO.getGender().equals("Male")) {
         	registeredUser.setGender(Gender.Male);

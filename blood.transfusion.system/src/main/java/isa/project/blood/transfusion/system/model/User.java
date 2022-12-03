@@ -207,6 +207,7 @@ public abstract class User implements UserDetails {
 	public void setStatus(UserStatus status) {
 		this.status = status;
 	}
+	
 
 	public List<Authority> getAuthorities() {
 		return authorities;

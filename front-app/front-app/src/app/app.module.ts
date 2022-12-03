@@ -22,6 +22,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CenterInfoComponent } from './center-info/center-info.component';
 import {MatListModule} from '@angular/material/list';
 import { NotPassedAppointmentsComponent } from './not-passed-appointments/not-passed-appointments.component';
+import { VisitingCentersHistoryComponent } from './visiting-centers-history/visiting-centers-history.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { NotPassedAppointmentsComponent } from './not-passed-appointments/not-pa
     QuestionnaireComponent,
     UserProfileComponent,
     CenterInfoComponent,
-    NotPassedAppointmentsComponent
+    NotPassedAppointmentsComponent,
+    VisitingCentersHistoryComponent
   ],
   imports: [
     BrowserModule,

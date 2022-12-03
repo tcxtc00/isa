@@ -29,7 +29,7 @@ public class QuickAppointmentsController {
 	@PreAuthorize("hasRole('REGISTEREDUSER')")
 	@PostMapping(path = "/sort")
 	public ResponseEntity<?> sort(@RequestBody SortDTO sortDTO){
-		return new ResponseEntity<>(quickAppointmentsService.sort(sortDTO), HttpStatus.OK);
+		return new ResponseEntity<>(quickAppointmentsService.sortFreeAppointments(sortDTO), HttpStatus.OK);
 	}
 	
 	@PreAuthorize("hasRole('REGISTEREDUSER')")
@@ -51,6 +51,18 @@ public class QuickAppointmentsController {
 	@PutMapping(path = "/cancel")
 	public ResponseEntity<?> cancel(@RequestBody AppointmentDTO appointmentDTO){
 		return new ResponseEntity<>(quickAppointmentsService.cancel(appointmentDTO.getId()), HttpStatus.OK);
+	}
+	
+	@PreAuthorize("hasRole('REGISTEREDUSER')")
+	@GetMapping(path = "/successfullyCompleted/{username}")
+	public ResponseEntity<?> getSuccessfullyCompletedAppointments(@PathVariable String username){
+		return new ResponseEntity<>(quickAppointmentsService.getSuccessfullyCompletedAppointments(username), HttpStatus.OK);
+	}
+	
+	@PreAuthorize("hasRole('REGISTEREDUSER')")
+	@PostMapping(path = "/sortSuccessfullyCompleted")
+	public ResponseEntity<?> sortSuccessfullyCompleted(@RequestBody SortDTO sortDTO){
+		return new ResponseEntity<>(quickAppointmentsService.sortSuccessfullyFinishedAppointments(sortDTO), HttpStatus.OK);
 	}
 	
 	

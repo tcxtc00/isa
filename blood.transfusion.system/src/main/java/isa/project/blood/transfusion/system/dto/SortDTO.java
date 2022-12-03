@@ -4,6 +4,7 @@ public class SortDTO {
 	
 	private String sortBy;
 	private String sortType;
+	private String username;
 	private Long id;
 	public String getSortBy() {
 		return sortBy;
@@ -23,6 +24,14 @@ public class SortDTO {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	
 	
 	
 	

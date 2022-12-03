@@ -2,6 +2,7 @@ package isa.project.blood.transfusion.system.model;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,9 +22,16 @@ public class RegisteredUser extends User{
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private Set<QRCode> qrCodes;
 	
+	@Column(name = "questionnaire")
+	private boolean questionnaire;
+	
+	@Column(name = "penalties")
+	private int penalties;
+	
 	@JsonManagedReference
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private Set<QuickAppointment> appointments;
+
 	
 	@Override
     public String getUserType() {
@@ -45,6 +53,26 @@ public class RegisteredUser extends User{
 	public void setAppointments(Set<QuickAppointment> appointments) {
 		this.appointments = appointments;
 	}
+
+	public boolean isQuestionnaire() {
+		return questionnaire;
+	}
+
+	public void setQuestionnaire(boolean questionnaire) {
+		this.questionnaire = questionnaire;
+	}
+
+	public int getPenalties() {
+		return penalties;
+	}
+
+	public void setPenalties(int penalties) {
+		this.penalties = penalties;
+	}
+	
+	
+	
+	
 	
 	
 	

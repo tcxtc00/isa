@@ -19,6 +19,7 @@ import com.google.zxing.WriterException;
 import isa.project.blood.transfusion.system.dto.AppointmentDTO;
 import isa.project.blood.transfusion.system.dto.AppointmentResponseDTO;
 import isa.project.blood.transfusion.system.dto.SortDTO;
+import isa.project.blood.transfusion.system.dto.SuccessfullyCompletedAppointmentDTO;
 import isa.project.blood.transfusion.system.model.AppointmentStatus;
 import isa.project.blood.transfusion.system.model.BloodTransfusionCenter;
 import isa.project.blood.transfusion.system.model.QuickAppointment;
@@ -50,7 +51,7 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 	private EmailService emailService;
 	
 	@Override
-	public List<QuickAppointment> sort(SortDTO sortDTO) {
+	public List<QuickAppointment> sortFreeAppointments(SortDTO sortDTO) {
 		
 		BloodTransfusionCenter center = bloodTransfusionCenterRepository.findById(sortDTO.getId()).get();
 		List<QuickAppointment> appointments = quickAppointmentsRepository.findByCenterAndStatus(center, AppointmentStatus.Free);
@@ -144,6 +145,64 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 		sameAppointment.setStatus(AppointmentStatus.Free);
 		
 		return quickAppointmentsRepository.save(sameAppointment);
+	}
+
+	@Override
+	public List<SuccessfullyCompletedAppointmentDTO> getSuccessfullyCompletedAppointments(String username) {
+		
+		RegisteredUser user = (RegisteredUser) userRepository.findByUsername(username);
+		List<QuickAppointment> successfullyCompletedAppointments = quickAppointmentsRepository.findByStatusAndUser(AppointmentStatus.SuccessFinished, user);
+		List<SuccessfullyCompletedAppointmentDTO> result = new ArrayList<>();
+		for(QuickAppointment appointment: successfullyCompletedAppointments) {
+			SuccessfullyCompletedAppointmentDTO dto = new SuccessfullyCompletedAppointmentDTO();
+			dto.setDate(appointment.getDate());
+			dto.setDuration(appointment.getDuration());
+			dto.setCenterName(appointment.getCenter().getName());
+			dto.setCenterAddress(appointment.getCenter().getAddress());
+			dto.setCenterCity(appointment.getCenter().getCity());
+			result.add(dto);
+		}
+		return result;
+	}
+
+	@Override
+	public List<SuccessfullyCompletedAppointmentDTO> sortSuccessfullyFinishedAppointments(SortDTO sortDTO) {
+		RegisteredUser user = (RegisteredUser) userRepository.findByUsername(sortDTO.getUsername());
+		List<QuickAppointment> appointments = quickAppointmentsRepository.findByStatusAndUser(AppointmentStatus.SuccessFinished, user);
+		
+		if(sortDTO.getSortBy().equals("Date")) {
+			if(sortDTO.getSortType().equals("Ascending")) {
+				Collections.sort(appointments, (a1, a2) ->
+			    (a1.getDate().compareTo(a2.getDate())));
+			}
+			if(sortDTO.getSortType().equals("Descending")) {
+				Collections.sort(appointments, (a1, a2) ->
+			    (a2.getDate().compareTo(a1.getDate())));
+			}
+		}
+		
+		if(sortDTO.getSortBy().equals("Duration")) {
+			if(sortDTO.getSortType().equals("Ascending")) {
+				Collections.sort(appointments, (a1, a2) ->
+			    (a1.getDuration().compareTo(a2.getDuration())));
+			}
+			if(sortDTO.getSortType().equals("Descending")) {
+				Collections.sort(appointments, (a1, a2) ->
+			    (a2.getDuration().compareTo(a1.getDuration())));
+			}
+		}
+		
+		List<SuccessfullyCompletedAppointmentDTO> result = new ArrayList<>();
+		for(QuickAppointment appointment: appointments) {
+			SuccessfullyCompletedAppointmentDTO dto = new SuccessfullyCompletedAppointmentDTO();
+			dto.setDate(appointment.getDate());
+			dto.setDuration(appointment.getDuration());
+			dto.setCenterName(appointment.getCenter().getName());
+			dto.setCenterAddress(appointment.getCenter().getAddress());
+			dto.setCenterCity(appointment.getCenter().getCity());
+			result.add(dto);
+		}
+		return result;
 	}
 
 }
