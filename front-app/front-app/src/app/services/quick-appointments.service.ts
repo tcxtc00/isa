@@ -36,4 +36,12 @@ export class QuickAppointmentsService {
     return this.httpClient.put(this.baseUrl + 'cancel', data, this.getAuthoHeader())
   }
 
+  succeffullyCompleted(username: any){
+    return this.httpClient.get(this.baseUrl + 'successfullyCompleted/' + username, this.getAuthoHeader())
+  }
+
+  sortSuccessfullyCompletedAppointments(data: any) {
+    return this.httpClient.post(this.baseUrl + 'sortSuccessfullyCompleted', data, this.getAuthoHeader())
+  }
+
 }

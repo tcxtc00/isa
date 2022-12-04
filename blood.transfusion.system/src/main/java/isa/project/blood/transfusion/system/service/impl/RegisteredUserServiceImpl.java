@@ -1,10 +1,12 @@
 package isa.project.blood.transfusion.system.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -111,6 +113,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService{
         registeredUser.setProfession(userDTO.getProfession());
         registeredUser.setProfessionInfo(userDTO.getProfessionInfo());
         registeredUser.setJmbg(userDTO.getJmbg());
+        registeredUser.setPenalties(0);
         registeredUser.setStatus(UserStatus.Pending);
         if(userDTO.getGender().equals("Male")) {
         	registeredUser.setGender(Gender.Male);
@@ -165,5 +168,17 @@ public class RegisteredUserServiceImpl implements RegisteredUserService{
 		User user = userRepository.findByUsername(username);
 		user.setStatus(UserStatus.Accepted);
 		return userRepository.save(user);
+	}
+	
+	//@Scheduled(cron = "0 0 0 1 * *")
+	@Scheduled(cron = " 0 */5 * * * *")
+	public void deletePenalties() {
+		List<RegisteredUser> users = userRepository.getReqisteredUsers();
+		
+		for(RegisteredUser user: users) {
+			user.setPenalties(0);
+			userRepository.save(user);
+		}
+		
 	}
 }

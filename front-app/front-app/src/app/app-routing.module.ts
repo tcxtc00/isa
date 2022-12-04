@@ -10,6 +10,7 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
 import { RegistrationComponent } from './registration/registration.component';
 import { AthguardGuard } from './shared/athguard.guard';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { VisitingCentersHistoryComponent } from './visiting-centers-history/visiting-centers-history.component';
 
 const routes: Routes = [
   {path: 'registration', component: RegistrationComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'profile', component: UserProfileComponent , canActivate: [AthguardGuard], data:{role: 'ROLE_REGISTEREDUSER'}},
   {path: 'center/:id', component: CenterInfoComponent , canActivate: [AthguardGuard], data:{role: 'ROLE_REGISTEREDUSER'}},
   {path: 'notPassedAppointments', component: NotPassedAppointmentsComponent , canActivate: [AthguardGuard], data:{role: 'ROLE_REGISTEREDUSER'}},
+  {path: 'history', component: VisitingCentersHistoryComponent , canActivate: [AthguardGuard], data:{role: 'ROLE_REGISTEREDUSER'}},
 
 ];
 

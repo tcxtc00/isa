@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { BloodTransfusionCenterService } from '../services/blood-transfusion-center.service';
 import { QuickAppointmentsService } from '../services/quick-appointments.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-center-info',
@@ -20,7 +21,8 @@ export class CenterInfoComponent implements OnInit {
   sortBy = ''
   sortType = ''
   username: any
-  constructor(private matSnackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private bloodTransfusionCenterService: BloodTransfusionCenterService, private quickAppointmentsService: QuickAppointmentsService) { }
+  user: any
+  constructor(private matSnackBar: MatSnackBar, private userService: UserService, private activatedRoute: ActivatedRoute, private bloodTransfusionCenterService: BloodTransfusionCenterService, private quickAppointmentsService: QuickAppointmentsService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -30,6 +32,9 @@ export class CenterInfoComponent implements OnInit {
       if (userStrng) {
         let user = JSON.parse(userStrng);
         this.username = user.username
+        this.userService.current().subscribe((response: any) => {
+          this.user = response;
+        })
 
       }
       this.bloodTransfusionCenterService.getById(this.id).subscribe((response: any) => {
@@ -112,23 +117,31 @@ export class CenterInfoComponent implements OnInit {
   }
 
   book(id: any) {
-    let data = {
-      id: id,
-      username: this.username
-    }
-    this.quickAppointmentsService.book(data).subscribe((response: any) => {
-      console.log(response)
-      this.bloodTransfusionCenterService.getById(this.id).subscribe((response: any) => {
-        this.center = response;
-        this.appointments = this.center.appointments
-        this.quickAppointments = this.center.quickAppointments
-        this.corectQuickAppointments();
-        this.corectAppointments();
+
+    if (this.user.penalties >= 3) {
+      this.matSnackBar.open('Imate tri penala i zbog toga ne možete da izvršite rezervaciju termina. Penali se brišu svakog prvog dana u mesecu.', 'Close', { duration: 6500 })
+    } else if (!this.user.questionnaire) {
+      this.matSnackBar.open('Niste popunili upitnik za davaoca krvi. Popunite upitnik pa potom rezervišite termin.', 'Close', { duration: 6500 })
+    } else {
+      let data = {
+        id: id,
+        username: this.username
+      }
+      this.quickAppointmentsService.book(data).subscribe((response: any) => {
+        console.log(response)
+        this.bloodTransfusionCenterService.getById(this.id).subscribe((response: any) => {
+          this.center = response;
+          this.appointments = this.center.appointments
+          this.quickAppointments = this.center.quickAppointments
+          this.corectQuickAppointments();
+          this.corectAppointments();
+        })
+        this.matSnackBar.open('Uspešno ste rezervisali termin za davanje krvi.', 'Close', { duration: 3500 })
+      }, error => {
+        this.matSnackBar.open('Rezervacija termina za davanje krvi nije uspela. Proverite u istoriji poseta centrima da li ste u prethodnih 6 meseci već davali krv. Ukoliko niste, razlog neuspešne rezervacije je nemogućnost da zakažete termin u istom centru u isto vreme.', 'Close', { duration: 15000 })
       })
-      this.matSnackBar.open('Uspešno ste rezervisali termin za davanje krvi.', 'Close', { duration: 3500 })
-    }, error => {
-      this.matSnackBar.open('Rezervacija termina za davanje krvi nije uspela. Možete samo jednom da zakažete termin u istom centru u isto vreme.', 'Close', { duration: 5000 })
-    })
+
+    }
   }
 
 

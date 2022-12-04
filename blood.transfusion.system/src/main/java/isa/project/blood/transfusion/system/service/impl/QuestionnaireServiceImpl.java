@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import isa.project.blood.transfusion.system.dto.QuestionnaireDTO;
 import isa.project.blood.transfusion.system.model.Gender;
 import isa.project.blood.transfusion.system.model.Questionnaire;
-import isa.project.blood.transfusion.system.model.User;
+import isa.project.blood.transfusion.system.model.RegisteredUser;
 import isa.project.blood.transfusion.system.repository.QuestionnaireRepository;
 import isa.project.blood.transfusion.system.repository.UserRepository;
 import isa.project.blood.transfusion.system.service.QuestionnaireService;
@@ -29,7 +29,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService{
 			return null;
 		}
 		
-		User user = userRepository.findByUsername(questionnaireDTO.getUsername());
+		RegisteredUser user = (RegisteredUser) userRepository.findByUsername(questionnaireDTO.getUsername());
 		
 		if(questionnaireDTO.getIsAbleToDonate() == null) {
 			return null;
@@ -95,6 +95,8 @@ public class QuestionnaireServiceImpl implements QuestionnaireService{
 			return null;
 		}
 		
+		user.setQuestionnaire(true);
+		userRepository.save(user);
 		Questionnaire questionnaire = new Questionnaire();
 		questionnaire.setAbleToDonate(questionnaireDTO.getIsAbleToDonate());
 		questionnaire.setBloodTransfusionInLast6Months(questionnaireDTO.getBloodTransfusionInLast6Months());
