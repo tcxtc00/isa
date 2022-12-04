@@ -2,6 +2,7 @@ package isa.project.blood.transfusion.system.service.impl;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -84,9 +85,24 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 	@Override
 	public QuickAppointment book(AppointmentDTO appointmentDTO) {
 		
+		RegisteredUser user = (RegisteredUser) userRepository.findByUsername(appointmentDTO.getUsername());
+		
+		if(user.getPenalties() >= 3) {
+			return null;
+		}
+		
+		if(!user.isQuestionnaire()) {
+			return null;
+		}
+		List<QuickAppointment> finishedAppointments = quickAppointmentsRepository.findByStatusAndUser(AppointmentStatus.SuccessFinished, user);
+		for(QuickAppointment finishedAppointment: finishedAppointments) {
+			long months = finishedAppointment.getDate().until(LocalDateTime.now(), ChronoUnit.MONTHS);
+			if(months < 6) {
+				return null;
+			}
+		}
 		QuickAppointment appointment = quickAppointmentsRepository.findById(appointmentDTO.getId()).get();
 		appointment.setStatus(AppointmentStatus.Booked);
-		RegisteredUser user = (RegisteredUser) userRepository.findByUsername(appointmentDTO.getUsername());
 		Set<QuickAppointment> appointments = user.getAppointments();
 		for(QuickAppointment qa: appointments) {
 			if(qa.getCenter().getId() == appointment.getCenter().getId() && qa.getDate().compareTo(appointment.getDate()) == 0 && qa.getDuration() == appointment.getDuration()) {
