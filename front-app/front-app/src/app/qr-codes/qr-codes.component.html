@@ -1,0 +1,44 @@
+<div>
+    <div class="row">
+
+        <div class="col-6" style="margin-top: 10px; margin-left: 10px;">
+            <mat-form-field appearance="fill">
+                <mat-label>Sortiraj po</mat-label>
+                <mat-select [(ngModel)]="sortBy" (selectionChange)="sortByChanged()">
+                    <mat-option value="DateDescending">Datum - opdajuće</mat-option>
+                    <mat-option value="DateAscending">Datum - rastuće</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-radio-group (change)="filterChanged()" [(ngModel)]="filter" style="margin-left: 20px;"
+                aria-label="Select an option">
+                <mat-radio-button value="Booked">Nov</mat-radio-button>
+                <mat-radio-button value="SuccessFinished">Obrađen</mat-radio-button>
+                <mat-radio-button value="NotSatisfiedConditions">Odbijen</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    
+    
+    </div>
+
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <h3>QR kodovi</h3>
+        <div class="approval">
+            <table id="customTable">
+                <tr>
+                    <th>QR kod</th>
+                    <th>Datum izdavanja</th>
+                    <th>Status</th>
+                </tr>
+                <tr *ngFor="let qr of convertedQRCodes">
+                    <td style="text-align: center;"><img [src]="qr.retrievedImage"></td>
+                    <td style="text-align: center;">{{qr.date | date:'medium'}}</td>
+                    <td style="text-align: center;">{{qr.status}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>
+</div>

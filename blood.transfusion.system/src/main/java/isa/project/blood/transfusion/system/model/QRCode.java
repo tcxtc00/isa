@@ -1,5 +1,7 @@
 package isa.project.blood.transfusion.system.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,6 +25,9 @@ public class QRCode {
 	
 	@Column(name = "file_name", unique = true, nullable = false)
 	private String fileName;
+	
+	@Column(name = "date", nullable = false)
+	private LocalDateTime date;
 	
 	@Lob
 	@Column(name = "data", nullable = false)
@@ -77,6 +82,16 @@ public class QRCode {
 	public void setUser(RegisteredUser user) {
 		this.user = user;
 	}
+
+	public LocalDateTime getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDateTime date) {
+		this.date = date;
+	}
+	
+	
 	
 	
 	
