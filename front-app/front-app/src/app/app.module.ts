@@ -23,6 +23,7 @@ import { CenterInfoComponent } from './center-info/center-info.component';
 import {MatListModule} from '@angular/material/list';
 import { NotPassedAppointmentsComponent } from './not-passed-appointments/not-passed-appointments.component';
 import { VisitingCentersHistoryComponent } from './visiting-centers-history/visiting-centers-history.component';
+import { QrCodesComponent } from './qr-codes/qr-codes.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { VisitingCentersHistoryComponent } from './visiting-centers-history/visi
     UserProfileComponent,
     CenterInfoComponent,
     NotPassedAppointmentsComponent,
-    VisitingCentersHistoryComponent
+    VisitingCentersHistoryComponent,
+    QrCodesComponent
   ],
   imports: [
     BrowserModule,

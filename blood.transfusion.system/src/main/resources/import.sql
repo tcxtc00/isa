@@ -67,12 +67,15 @@ INSERT INTO public.quick_appointment(date, duration, status, center_id) VALUES (
 INSERT INTO public.quick_appointment(date, duration, status, center_id) VALUES ('20230102 11:00:00 AM', 30, 0, 4);
 INSERT INTO public.quick_appointment(date, duration, status, center_id) VALUES ('20230103 08:00:00 AM', 35, 0, 4);
 INSERT INTO public.quick_appointment(date, duration, status, center_id) VALUES ('20230104 07:00:00 AM', 30, 0, 4);
+INSERT INTO public.quick_appointment(date, duration, status, center_id) VALUES ('20230504 07:00:00 AM', 30, 0, 1);
 
 
-INSERT INTO public.quick_appointment(date, duration, status, center_id, user_id) VALUES ('20221211 07:00:00 AM', 30, 1, 1, 17);
-INSERT INTO public.quick_appointment(date, duration, status, center_id, user_id) VALUES ('20230515 07:00:00 AM', 35, 1, 1, 17);
+INSERT INTO public.quick_appointment(date, duration, status, center_id, user_id) VALUES ('20230615 07:00:00 AM', 35, 1, 1, 17);
+
 INSERT INTO public.quick_appointment(date, duration, status, center_id, user_id) VALUES ('20210915 07:00:00 AM', 35, 3, 1, 17);
-INSERT INTO public.quick_appointment(date, duration, status, center_id, user_id) VALUES ('20220123 08:00:00 AM', 30, 3, 2, 17);
+INSERT INTO public.quick_appointment(date, duration, status, center_id, user_id) VALUES ('20220923 08:00:00 AM', 30, 3, 2, 17);
+INSERT INTO public.quick_appointment(date, duration, status, center_id, user_id) VALUES ('20221222 08:15:00 PM', 30, 1, 2, 17);
+
 
 
 INSERT INTO public.appointment_staff(appointment_id, staff_id) VALUES (1, 9);

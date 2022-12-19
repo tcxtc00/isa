@@ -6,6 +6,7 @@ import { CenterInfoComponent } from './center-info/center-info.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { NotPassedAppointmentsComponent } from './not-passed-appointments/not-passed-appointments.component';
+import { QrCodesComponent } from './qr-codes/qr-codes.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AthguardGuard } from './shared/athguard.guard';
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'center/:id', component: CenterInfoComponent , canActivate: [AthguardGuard], data:{role: 'ROLE_REGISTEREDUSER'}},
   {path: 'notPassedAppointments', component: NotPassedAppointmentsComponent , canActivate: [AthguardGuard], data:{role: 'ROLE_REGISTEREDUSER'}},
   {path: 'history', component: VisitingCentersHistoryComponent , canActivate: [AthguardGuard], data:{role: 'ROLE_REGISTEREDUSER'}},
+  {path: 'qrCodes', component: QrCodesComponent , canActivate: [AthguardGuard], data:{role: 'ROLE_REGISTEREDUSER'}},
 
 ];
 

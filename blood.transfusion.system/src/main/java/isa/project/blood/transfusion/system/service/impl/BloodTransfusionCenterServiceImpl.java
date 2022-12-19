@@ -1,5 +1,6 @@
 package isa.project.blood.transfusion.system.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import isa.project.blood.transfusion.system.dto.SortDTO;
 import isa.project.blood.transfusion.system.model.AppointmentStatus;
+import isa.project.blood.transfusion.system.model.AvailableAppointment;
 import isa.project.blood.transfusion.system.model.BloodTransfusionCenter;
 import isa.project.blood.transfusion.system.model.QuickAppointment;
 import isa.project.blood.transfusion.system.repository.BloodTransfusionCenterRepository;
@@ -72,10 +74,16 @@ public class BloodTransfusionCenterServiceImpl implements BloodTransfusionCenter
 	public BloodTransfusionCenter getById(Long id) {
 		BloodTransfusionCenter center = bloodTransfusionCenterRepository.findById(id).get();
 		Set<QuickAppointment> appointments = center.getQuickAppointments();
+		Set<AvailableAppointment> availableAppointments = center.getAppointments();
 		Set<QuickAppointment> filteredAppointments = appointments.stream()
-				.filter(a -> (a.getStatus().equals(AppointmentStatus.Free)))
+				.filter(a -> (a.getStatus().equals(AppointmentStatus.Free) && a.getDate().compareTo(LocalDateTime.now()) > 0))
                 .collect(Collectors.toSet());
+		
+		Set<AvailableAppointment> filteredAvailableAppointments = availableAppointments.stream()
+				.filter(a -> (a.getStartDate().compareTo(LocalDateTime.now()) > 0))
+				.collect(Collectors.toSet());
 		center.setQuickAppointments(filteredAppointments);
+		center.setAppointments(filteredAvailableAppointments);
 		return center;
 	}
 

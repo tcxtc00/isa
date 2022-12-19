@@ -6,6 +6,8 @@ public class SortDTO {
 	private String sortType;
 	private String username;
 	private Long id;
+	private String filter;
+	
 	public String getSortBy() {
 		return sortBy;
 	}
@@ -30,6 +32,14 @@ public class SortDTO {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	public String getFilter() {
+		return filter;
+	}
+	public void setFilter(String filter) {
+		this.filter = filter;
+	}
+	
+	
 	
 	
 	
