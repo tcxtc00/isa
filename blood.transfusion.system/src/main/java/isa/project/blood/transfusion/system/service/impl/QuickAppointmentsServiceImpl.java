@@ -94,14 +94,15 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 		if(!user.isQuestionnaire()) {
 			return null;
 		}
+		QuickAppointment appointment = quickAppointmentsRepository.findById(appointmentDTO.getId()).get();
 		List<QuickAppointment> finishedAppointments = quickAppointmentsRepository.findByStatusAndUser(AppointmentStatus.SuccessFinished, user);
 		for(QuickAppointment finishedAppointment: finishedAppointments) {
-			long months = finishedAppointment.getDate().until(LocalDateTime.now(), ChronoUnit.MONTHS);
+			long months = finishedAppointment.getDate().until(appointment.getDate(), ChronoUnit.MONTHS);
 			if(months < 6) {
 				return null;
 			}
 		}
-		QuickAppointment appointment = quickAppointmentsRepository.findById(appointmentDTO.getId()).get();
+		
 		appointment.setStatus(AppointmentStatus.Booked);
 		Set<QuickAppointment> appointments = user.getAppointments();
 		for(QuickAppointment qa: appointments) {

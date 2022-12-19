@@ -17,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import isa.project.blood.transfusion.system.dto.SortDTO;
@@ -72,7 +73,12 @@ public class QRCodeServiceImpl implements QRCodeService {
 	public List<QRCode> getUserQRCodes(String username) {
 
 		RegisteredUser user = (RegisteredUser) userRepository.findByUsername(username);
-		return qrCodeRepository.findByUser(user);
+		Set<QRCode> qrCodes = user.getQrCodes();
+		List<QRCode> filteredQrCodes = qrCodes.stream()
+				.filter(qr -> (qr.getAppointment().getStatus().equals(AppointmentStatus.Booked) || qr.getAppointment().getStatus().equals(AppointmentStatus.SuccessFinished) || qr.getAppointment().getStatus().equals(AppointmentStatus.NotSatisfiedConditions)))
+				.collect(Collectors.toList());
+		
+		return filteredQrCodes;
 	}
 
 	@Override
