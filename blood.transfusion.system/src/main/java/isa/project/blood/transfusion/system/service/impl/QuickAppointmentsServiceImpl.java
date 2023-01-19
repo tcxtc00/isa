@@ -88,7 +88,7 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
 	public QuickAppointment book(AppointmentDTO appointmentDTO) throws Exception{
 		
-		System.out.println("Usao!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
 		RegisteredUser user = (RegisteredUser) userRepository.findByUsername(appointmentDTO.getUsername());
 		
 		if(user.getPenalties() >= 3) {
@@ -102,8 +102,7 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 		List<QuickAppointment> finishedAppointments = quickAppointmentsRepository.findByStatusAndUser(AppointmentStatus.SuccessFinished, user);
 		for(QuickAppointment finishedAppointment: finishedAppointments) {
 			long months = finishedAppointment.getDate().until(appointment.getDate(), ChronoUnit.MONTHS);
-			if(months < 6) {
-				System.out.println("JESTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			if(months < 6 /*&& months > 0*/) {
 				return null;
 			}
 		}
@@ -123,7 +122,6 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-		System.out.println("NIJE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		QuickAppointment app = quickAppointmentsRepository.save(appointment);
 		System.out.println(app.getStatus());
 		return app;

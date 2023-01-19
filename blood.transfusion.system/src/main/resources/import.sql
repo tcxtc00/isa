@@ -76,6 +76,13 @@ INSERT INTO public.quick_appointment(date, duration, status, center_id, user_id,
 INSERT INTO public.quick_appointment(date, duration, status, center_id, user_id, version) VALUES ('20220923 08:00:00 AM', 30, 3, 2, 17, 0);
 INSERT INTO public.quick_appointment(date, duration, status, center_id, user_id, version) VALUES ('20221222 08:15:00 PM', 30, 1, 2, 18, 0);
 
+INSERT INTO public.quick_appointment(date, duration, status, center_id, version) VALUES ('20190904 07:00:00 AM', 30, 0, 1, 0);
+INSERT INTO public.quick_appointment(date, duration, status, center_id, version) VALUES ('20240404 08:00:00 AM', 30, 0, 1, 0);
+INSERT INTO public.quick_appointment(date, duration, status, center_id, version) VALUES ('20231104 08:00:00 AM', 30, 0, 1, 0);
+
+
+
+
 
 INSERT INTO public.appointment_staff(appointment_id, staff_id) VALUES (1, 9);
 INSERT INTO public.appointment_staff(appointment_id, staff_id) VALUES (1, 10);
