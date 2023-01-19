@@ -31,7 +31,7 @@ INSERT INTO public.users_table(type, address, city, country, gender, jmbg, name,
 
 
 INSERT INTO public.users_table(type, address, city, country, gender, jmbg, name, password, phone_number, profession, proffesion_info, status, surname, username, penalties, questionnaire) VALUES ('RegisteredUser', 'Nikole Pasica 55', 'Kraljevo', 'Srbija', 0, '1005995123456', 'Nikola', '$2a$10$C3VgzDUt/I3ghr4yLtF34OnUqAnHZ.OVumf3MWf8Rc7/XmI5ZSmuO', '6467637474', 'Advokat', 'Advokatska komora Srbije', 1, 'Nikovic', 'isa.tanja.2022+nikolaK@gmail.com', 2, false);
-INSERT INTO public.users_table(type, address, city, country, gender, jmbg, name, password, phone_number, profession, proffesion_info, status, surname, username, penalties, questionnaire) VALUES ('RegisteredUser', 'Marka Miljanova 11', 'Novi Sad', 'Srbija', 1, '1105994123456', 'Marina', '$2a$10$C3VgzDUt/I3ghr4yLtF34OnUqAnHZ.OVumf3MWf8Rc7/XmI5ZSmuO', '5235235623', 'Profesor matematike', 'Gimnazija Isidora Sekulic, Novi Sad', 1, 'Urosevic', 'isa.tanja.2022+marinaK@gmail.com', 0, false);
+INSERT INTO public.users_table(type, address, city, country, gender, jmbg, name, password, phone_number, profession, proffesion_info, status, surname, username, penalties, questionnaire) VALUES ('RegisteredUser', 'Marka Miljanova 11', 'Novi Sad', 'Srbija', 1, '1105994123456', 'Marina', '$2a$10$C3VgzDUt/I3ghr4yLtF34OnUqAnHZ.OVumf3MWf8Rc7/XmI5ZSmuO', '5235235623', 'Profesor matematike', 'Gimnazija Isidora Sekulic, Novi Sad', 1, 'Urosevic', 'isa.tanja.2022+marinaK@gmail.com', 3, false);
 
 
 INSERT INTO public.user_authority(user_id, authority_id) VALUES (1, 2);
@@ -76,7 +76,7 @@ INSERT INTO public.quick_appointment(date, duration, status, center_id, user_id,
 INSERT INTO public.quick_appointment(date, duration, status, center_id, user_id, version) VALUES ('20220923 08:00:00 AM', 30, 3, 2, 17, 0);
 INSERT INTO public.quick_appointment(date, duration, status, center_id, user_id, version) VALUES ('20221222 08:15:00 PM', 30, 1, 2, 18, 0);
 
-INSERT INTO public.quick_appointment(date, duration, status, center_id, version) VALUES ('20190904 07:00:00 AM', 30, 0, 1, 0);
+INSERT INTO public.quick_appointment(date, duration, status, center_id, version) VALUES ('20230120 08:00:00 AM', 30, 0, 1, 0);
 INSERT INTO public.quick_appointment(date, duration, status, center_id, version) VALUES ('20240404 08:00:00 AM', 30, 0, 1, 0);
 INSERT INTO public.quick_appointment(date, duration, status, center_id, version) VALUES ('20231104 08:00:00 AM', 30, 0, 1, 0);
 

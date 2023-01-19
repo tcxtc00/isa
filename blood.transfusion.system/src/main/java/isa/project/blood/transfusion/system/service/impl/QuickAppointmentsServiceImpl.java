@@ -102,7 +102,7 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 		List<QuickAppointment> finishedAppointments = quickAppointmentsRepository.findByStatusAndUser(AppointmentStatus.SuccessFinished, user);
 		for(QuickAppointment finishedAppointment: finishedAppointments) {
 			long months = finishedAppointment.getDate().until(appointment.getDate(), ChronoUnit.MONTHS);
-			if(months < 6 /*&& months > 0*/) {
+			if(months < 6) {
 				return null;
 			}
 		}
