@@ -35,7 +35,12 @@ public class QuickAppointmentsController {
 	@PreAuthorize("hasRole('REGISTEREDUSER')")
 	@PostMapping(path = "/book")
 	public ResponseEntity<?> book(@RequestBody AppointmentDTO appointmentDTO){
-		QuickAppointment quickAppointment = quickAppointmentsService.book(appointmentDTO);
+		QuickAppointment quickAppointment = new QuickAppointment();
+		try {
+			quickAppointment = quickAppointmentsService.book(appointmentDTO);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 		if(quickAppointment == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}

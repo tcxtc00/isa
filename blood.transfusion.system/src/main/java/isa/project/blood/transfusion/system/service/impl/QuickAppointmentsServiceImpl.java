@@ -14,6 +14,8 @@ import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.google.zxing.WriterException;
 
@@ -83,8 +85,10 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 	}
 
 	@Override
-	public QuickAppointment book(AppointmentDTO appointmentDTO) {
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+	public QuickAppointment book(AppointmentDTO appointmentDTO) throws Exception{
 		
+		System.out.println("Usao!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		RegisteredUser user = (RegisteredUser) userRepository.findByUsername(appointmentDTO.getUsername());
 		
 		if(user.getPenalties() >= 3) {
@@ -99,6 +103,7 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 		for(QuickAppointment finishedAppointment: finishedAppointments) {
 			long months = finishedAppointment.getDate().until(appointment.getDate(), ChronoUnit.MONTHS);
 			if(months < 6) {
+				System.out.println("JESTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 				return null;
 			}
 		}
@@ -118,8 +123,10 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-		
-		return quickAppointmentsRepository.save(appointment);
+		System.out.println("NIJE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		QuickAppointment app = quickAppointmentsRepository.save(appointment);
+		System.out.println(app.getStatus());
+		return app;
 	}
 
 	@Override
