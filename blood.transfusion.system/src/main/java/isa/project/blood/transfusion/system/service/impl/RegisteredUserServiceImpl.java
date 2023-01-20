@@ -171,7 +171,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService{
 	}
 	
 	//@Scheduled(cron = "0 0 0 1 * *")
-	//@Scheduled(cron = " 0 */5 * * * *")
+	@Scheduled(cron = " 0 */5 * * * *") // five minutes
 	public void deletePenalties() {
 		List<RegisteredUser> users = userRepository.getReqisteredUsers();
 		
