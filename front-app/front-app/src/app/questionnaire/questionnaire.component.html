@@ -1,0 +1,369 @@
+<div>
+    <h1>Upitnik</h1>
+    <div class="rounded">
+        <h6 style="text-align: center; margin-bottom: 40px;">Molimo Vas da pročitate upitnik i iskreno odgovorite na
+            svako pitanje.
+            Upitnik je važan zbog očuvanja Vašeg zdravlja i sigurnosti transfuzijskog lečenja pacijenata.
+            Vaši odgovori, kao i svi ostali podaci o Vama su potpuno poverljivi i koristiće se samo za potrebe ovlašćene
+            trasfuzijske ustanove.</h6>
+        <div class="row">
+            <div class="col-10">
+                <p>Da li ste do sada dobrovoljno davali krv ili komponente krvi?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkIsDonor()" [(ngModel)]="isDonor"  style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="isDonorCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+        <div class="row">
+            <div class="col-10">
+                <p>Da li se trenutno osećate zdravim, sposobnim i odmornim da date krv ili komponente krvi?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkIsAbleToDonate()" [(ngModel)]="isAbleToDonate" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="isAbleToDonateCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li ste nešto jeli pre dolaska na davanje krvi ili komponente krvi?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkFoodConsume()" [(ngModel)]="foodConsume" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="foodConsumeCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li redovno(svakodnevno) uzimate bilo kakve lekove?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkTakeMedicineRegulary()" [(ngModel)]="takeMedicineRegulary" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="takeMedicineRegularyCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li ste poslednja 2-3 dana uzimali bilo kakve lekove (npr. Brufen, Kafetin, Analgin)?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkTakeMedicineThreeDaysAgo()" [(ngModel)]="takeMedicineThreeDaysAgo" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="takeMedicineThreeDaysAgoCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li ste stalno uzimate Aspirin? Da li ste ga uzimali u poslednjih 5 dana?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkUsedAspirin()" [(ngModel)]="usedAspirin" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="usedAspirinCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li ste vadili zub u proteklih 7 dana?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkToothExtractionSevenDaysAgo()" [(ngModel)]="toothExtractionSevenDaysAgo" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="toothExtractionSevenDaysAgoCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li ste u poslednjih 7 do 10 dana imali temperaturu preko 38°C, kijavicu, prehladu ili uzimali
+                    antibiotike?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkHasFeverOrFlu()" [(ngModel)]="hasFeverOrFlu" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="hasFeverOrFluCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li ste imali ubode krpelja u proteklih 12 meseci i da li ste se zbog toga javljali lekaru?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkTickBite12MonthsAgo()" [(ngModel)]="tickBite12MonthsAgo" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="tickBite12MonthsAgoCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li ste ikada lečeni od epilepsije, šećerne bolesti, astme, tuberkuloze, infarkta, moždanog udara
+                    ili malignih oboljenja?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkCuredOfSomeDiseases()" [(ngModel)]="curedOfSomeDiseases" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="curedOfSomeDiseasesCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li bolujete od neke druge hronične bolesti: srca, pluća, bubrega, jetre, zeluca, kostiju, nervnog
+                    sistema, krvnih sudova?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkSuffersFromChronicDiseases()" [(ngModel)]="suffersFromChronicDiseases" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="suffersFromChronicDiseasesCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li ste ikada imali problema sa štitnom žlezdom, hipofizom i/ili primali hormone?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkHasProblemWithGlands()" [(ngModel)]="hasProblemWithGlands" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="hasProblemWithGlandsCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li imate neke promene na koži ili bolujete od alergije?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkHasSkinDiseases()" [(ngModel)]="hasSkinDiseases" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="hasSkinDiseasesCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li dugo krvarite posle povrede ili spontano dobijate modrice?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkDecreasedPlatelets()" [(ngModel)]="decreasedPlatelets" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="decreasedPlateletsCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li ste u poslednjih 6 meseci imali neku operaciju?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkHasSurgeryInLast6Month()" [(ngModel)]="hasSurgeryInLast6Month" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="hasSurgeryInLast6MonthCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li ste u poslednjih 6 meseci imali akupunkturu, pirsing ili tetovažu?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkPiercingOrTattoInLast6Month()" [(ngModel)]="piercingOrTattooInLast6Month" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="piercingOrTattooInLast6MonthCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li ste pili alkohol u poslednjih 6 sati?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkDrinkAlcohol()" [(ngModel)]="drinkAlcohol" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="drinkAlcoholCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li imate suviše visok ili suviše nizak pritisak?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkLowBloodPressure()" [(ngModel)]="lowBloodPressure" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="lowBloodPressureCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li ste u poslednjih 6 meseci bili podvrgnuti transfuziji krvi?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkBloodTransfusionInLast6Months()" [(ngModel)]="bloodTransfusionInLast6Months" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="bloodTransfusionInLast6MonthsCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li imate manje od 50kg?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkLessThan50Kilograms()" [(ngModel)]="lessThan50Kilograms" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="lessThan50KilogramsCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <h6 style="color: red; margin-bottom: 15px; margin-top: 25px;">Za žene</h6>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li ste u drugom stanju?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkIsPregnant()" [(ngModel)]="isPregnant" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="isPregnantCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <p>Da li trenutno imate menstruaciju?</p>
+            </div>
+            <div class="col-2">
+                <mat-radio-group (change)="checkHasPeriod()" [(ngModel)]="hasPeriod" style="margin-left: 20px;" aria-label="Select an option">
+                    <mat-radio-button value="true">Da</mat-radio-button>
+                    <mat-radio-button value="false">Ne</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="hasPeriodCheck" class="row" style="margin: -15px 0;">
+            <label class="validation">Odaberite opciju Da ili Ne</label>
+        </div>
+
+
+        <div class="row">
+            <div class="col-9">
+            </div>
+            <div class="col-3">
+                <h6 style="color: red; margin-bottom: 15px; margin-top: 25px; margin-left: 40px;">HVALA ŠTO DAJETE KRV
+                </h6>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-5">
+            </div>
+            <div class="col-2">
+                <button (click)="sendQuestionnaire()">Pošalji</button>
+            </div>
+            <div class="col-5">
+            </div>
+        </div>
+
+    </div>
+</div>

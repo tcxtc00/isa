@@ -1,0 +1,61 @@
+<div class="row">
+
+    <div class="col-6" style="margin-top: 10px; margin-left: 10px;">
+        <mat-form-field appearance="fill">
+            <mat-label>Sortiraj brze termine</mat-label>
+            <mat-select [(ngModel)]="sortBy" (selectionChange)="sortByChanged()">
+                <mat-option value="Date">Datum</mat-option>
+                <mat-option value="Duration">Trajanje</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-radio-group (change)="sortTypeChanged()" [(ngModel)]="sortType" style="margin-left: 20px;"
+            aria-label="Select an option">
+            <mat-radio-button value="Descending">Opadajuće</mat-radio-button>
+            <mat-radio-button value="Ascending">Rastuće</mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+
+</div>
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <h3>Brzi termini</h3>
+        <div class="approval">
+            <table id="customTable">
+                <tr>
+                    <th>Datum</th>
+                    <th>Trajanje</th>
+                    <th>Rezerviši</th>
+                </tr>
+                <tr *ngFor="let appointment of convertedQuickAppointments">
+                    <td>{{appointment.date| date:'medium'}}</td>
+                    <td>{{appointment.duration}} min</td>
+                    <td><button (click)="book(appointment.id)">Rezerviši</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-3"></div>
+</div>
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <h3>Dostupni termini</h3>
+        <div class="approval">
+            <table id="customTable">
+                <tr>
+                    <th>Datum</th>
+                    <th>Trajanje</th>
+                </tr>
+                <tr *ngFor="let appointment of convertedAppointments">
+                    <td>{{appointment.startDate| date:'medium'}}</td>
+                    <td>{{appointment.duration}} min</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-3"></div>
+</div>

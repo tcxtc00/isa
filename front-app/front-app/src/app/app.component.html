@@ -1,0 +1,14 @@
+<div class="topnav">
+  <a href="/">Početna</a>
+  <a href="/profile" *ngIf="role == 'ROLE_REGISTEREDUSER'">Profil</a>
+  <a href="/centers">Centri</a>
+  <a href="/notPassedAppointments" *ngIf="role == 'ROLE_REGISTEREDUSER'">Predstojeći termini</a>
+  <a href="/history" *ngIf="role == 'ROLE_REGISTEREDUSER'">Istorija poseta centrima</a>
+  <a href="/qrCodes" *ngIf="role == 'ROLE_REGISTEREDUSER'">QR kodovi</a>
+  <a href="/registration" *ngIf="user == null">Registracija</a>
+  <a href="/questionnaire" *ngIf="role == 'ROLE_REGISTEREDUSER'">Upitnik</a>
+  <a href="/login" style="float: right;" *ngIf="user == null">Uloguj se</a>
+  <a style="float: right;" *ngIf="user != null" (click) = "logout()" >Odjava</a>
+</div>
+
+<router-outlet></router-outlet>

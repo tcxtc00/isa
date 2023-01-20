@@ -1,0 +1,13 @@
+.img {
+    border-radius: 8px;
+    width: 100%;
+    margin-top: 20px;   
+}
+
+.rounded {
+    border-radius: 5px;
+    background-color: #e6e2dd;
+    padding: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
