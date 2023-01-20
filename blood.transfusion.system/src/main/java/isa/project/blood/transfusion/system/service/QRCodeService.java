@@ -14,5 +14,6 @@ public interface QRCodeService {
 	public QRCode createQRCode(QuickAppointment quickAppointment, int width, int height) throws WriterException, IOException;
 	public List<QRCode> getUserQRCodes(String username);
 	public List<QRCode> sort(SortDTO sortDTO);
+	public void createTestQRCodes(int width,int height) throws WriterException, IOException;
 	
 }

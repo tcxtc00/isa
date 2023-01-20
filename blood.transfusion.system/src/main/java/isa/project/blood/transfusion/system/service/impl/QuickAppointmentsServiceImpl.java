@@ -58,30 +58,33 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 		
 		BloodTransfusionCenter center = bloodTransfusionCenterRepository.findById(sortDTO.getId()).get();
 		List<QuickAppointment> appointments = quickAppointmentsRepository.findByCenterAndStatus(center, AppointmentStatus.Free);
+		List<QuickAppointment> filteredAppointments = appointments.stream().
+				filter(a -> (a.getDate().compareTo(LocalDateTime.now())>= 0))
+                .collect(Collectors.toList());
 		
 		if(sortDTO.getSortBy().equals("Date")) {
 			if(sortDTO.getSortType().equals("Ascending")) {
-				Collections.sort(appointments, (a1, a2) ->
+				Collections.sort(filteredAppointments, (a1, a2) ->
 			    (a1.getDate().compareTo(a2.getDate())));
 			}
 			if(sortDTO.getSortType().equals("Descending")) {
-				Collections.sort(appointments, (a1, a2) ->
+				Collections.sort(filteredAppointments, (a1, a2) ->
 			    (a2.getDate().compareTo(a1.getDate())));
 			}
 		}
 		
 		if(sortDTO.getSortBy().equals("Duration")) {
 			if(sortDTO.getSortType().equals("Ascending")) {
-				Collections.sort(appointments, (a1, a2) ->
+				Collections.sort(filteredAppointments, (a1, a2) ->
 			    (a1.getDuration().compareTo(a2.getDuration())));
 			}
 			if(sortDTO.getSortType().equals("Descending")) {
-				Collections.sort(appointments, (a1, a2) ->
+				Collections.sort(filteredAppointments, (a1, a2) ->
 			    (a2.getDuration().compareTo(a1.getDuration())));
 			}
 		}
 		
-		return appointments;
+		return filteredAppointments;
 	}
 
 	@Override
@@ -107,13 +110,14 @@ public class QuickAppointmentsServiceImpl implements QuickAppointmentsService{
 			}
 		}
 		
-		appointment.setStatus(AppointmentStatus.Booked);
+		
 		Set<QuickAppointment> appointments = user.getAppointments();
 		for(QuickAppointment qa: appointments) {
 			if(qa.getCenter().getId() == appointment.getCenter().getId() && qa.getDate().compareTo(appointment.getDate()) == 0 && qa.getDuration() == appointment.getDuration()) {
 				return null;
 			}
 		}
+		appointment.setStatus(AppointmentStatus.Booked);
 		appointment.setUser(user);
 		try {
 			String fileName = qrCodeService.createQRCode(appointment, 250, 250).getFileName();
